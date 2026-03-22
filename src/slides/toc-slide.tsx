@@ -16,7 +16,7 @@ export function TocSlide() {
 
   return (
     <SlideLayout>
-      <div className="flex flex-col justify-center h-full gap-6">
+      <div className="flex flex-col justify-center h-full gap-7">
         <AnimatedText>
           <GradientText as="h2" className="text-4xl font-display font-bold">
             {t('toc.title')}

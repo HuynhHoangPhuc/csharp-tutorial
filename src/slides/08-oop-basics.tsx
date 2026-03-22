@@ -12,7 +12,7 @@ function Ch8SectionTitle() {
   const { t } = useLanguage()
   return (
     <SlideLayout showBackground>
-      <div className="flex flex-col items-center justify-center h-full gap-6">
+      <div className="flex flex-col items-center justify-center h-full gap-7">
         <AnimatedText>
           <div className="text-[var(--accent1)] font-display text-lg mb-2 opacity-60">// Chapter 8</div>
         </AnimatedText>
@@ -34,7 +34,7 @@ function Ch8Problem() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col h-full justify-center gap-8">
+      <div className="flex flex-col h-full justify-center gap-6">
         <AnimatedText>
           <GradientText as="h2" className="text-4xl font-bold">
             {t('oop.problem.title')}
@@ -74,7 +74,7 @@ function Ch8ClassVsObject() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col h-full justify-center gap-8">
+      <div className="flex flex-col h-full justify-center gap-6">
         <AnimatedText>
           <GradientText as="h2" className="text-4xl font-bold">
             {t('oop.class_object.title')}
@@ -153,7 +153,7 @@ function Ch8PropertiesVsFields() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col h-full justify-center gap-7">
+      <div className="flex flex-col h-full justify-center gap-6">
         <AnimatedText>
           <GradientText as="h2" className="text-4xl font-bold">
             {t('oop.properties.title')}
@@ -202,7 +202,7 @@ function Ch8Constructors() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col h-full justify-center gap-7">
+      <div className="flex flex-col h-full justify-center gap-6">
         <AnimatedText>
           <GradientText as="h2" className="text-4xl font-bold">
             {t('oop.constructors.title')}
@@ -290,7 +290,7 @@ function Ch8AccessModifiers() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col h-full justify-center gap-7">
+      <div className="flex flex-col h-full justify-center gap-6">
         <AnimatedText>
           <GradientText as="h2" className="text-4xl font-bold">
             {t('oop.access.title')}

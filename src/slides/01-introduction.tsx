@@ -13,7 +13,7 @@ function TitleSlide() {
   const { t } = useLanguage()
   return (
     <SlideLayout showBackground>
-      <div className="flex flex-col items-center justify-center h-full text-center gap-6">
+      <div className="flex flex-col items-center justify-center h-full text-center gap-7">
         {/* Chapter label */}
         <motion.div
           variants={springIn}
@@ -25,7 +25,7 @@ function TitleSlide() {
         </motion.div>
 
         <AnimatedText delay={0.1}>
-          <GradientText as="h1" className="text-7xl font-display font-extrabold leading-tight">
+          <GradientText as="h1" className="text-6xl font-display font-extrabold leading-tight">
             {t('intro.title')}
           </GradientText>
         </AnimatedText>
@@ -56,7 +56,7 @@ function ProblemSlide() {
   const promptEmojis = ['💡', '🤔', '🎯', '⚡']
   return (
     <SlideLayout>
-      <div className="flex flex-col justify-center h-full gap-10">
+      <div className="flex flex-col justify-center h-full gap-7">
         <AnimatedText>
           <h2 className="text-4xl font-bold text-text-primary">
             {t('intro.problem_title')}
@@ -94,14 +94,14 @@ function WhatIsCSharpSlide() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col justify-center h-full gap-8">
+      <div className="flex flex-col justify-center h-full gap-7">
         <AnimatedText>
           <h2 className="text-4xl font-bold text-text-primary">
             {t('intro.what_is_csharp')}
           </h2>
         </AnimatedText>
 
-        <div className="flex gap-8 items-start">
+        <div className="flex gap-6 items-start">
           {/* Description */}
           <div className="flex-1">
             <AnimatedList
@@ -151,7 +151,7 @@ function WhatCanYouBuildSlide() {
   ]
   return (
     <SlideLayout>
-      <div className="flex flex-col justify-center h-full gap-8">
+      <div className="flex flex-col justify-center h-full gap-7">
         <AnimatedText>
           <h2 className="text-4xl font-bold text-text-primary">
             {t('intro.what_can_build')}
@@ -191,7 +191,7 @@ function WhyCSharpSlide() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col justify-center h-full gap-8">
+      <div className="flex flex-col justify-center h-full gap-7">
         <AnimatedText>
           <h2 className="text-4xl font-bold text-text-primary">
             {t('intro.why_csharp')}
@@ -200,21 +200,21 @@ function WhyCSharpSlide() {
 
         <AnimatedList
           className="grid grid-cols-2 gap-4 !space-y-0"
-          itemClassName=""
+          itemClassName="h-full"
           items={[
-            <GlassCard key="modern" accentBorder className="p-5">
+            <GlassCard key="modern" accentBorder className="p-5 h-full">
               <div className="text-sm mb-1"><GradientText>{t('intro.why1_label')}</GradientText></div>
               <div className="text-text-secondary">{t('intro.why1_desc')}</div>
             </GlassCard>,
-            <GlassCard key="safe" accentBorder className="p-5">
+            <GlassCard key="safe" accentBorder className="p-5 h-full">
               <div className="text-sm mb-1"><GradientText>{t('intro.why2_label')}</GradientText></div>
               <div className="text-text-secondary">{t('intro.why2_desc')}</div>
             </GlassCard>,
-            <GlassCard key="community" accentBorder className="p-5">
+            <GlassCard key="community" accentBorder className="p-5 h-full">
               <div className="text-sm mb-1"><GradientText>{t('intro.why3_label')}</GradientText></div>
               <div className="text-text-secondary">{t('intro.why3_desc')}</div>
             </GlassCard>,
-            <GlassCard key="jobs" accentBorder className="p-5">
+            <GlassCard key="jobs" accentBorder className="p-5 h-full">
               <div className="text-sm mb-1"><GradientText>{t('intro.why4_label')}</GradientText></div>
               <div className="text-text-secondary">{t('intro.why4_desc')}</div>
             </GlassCard>,
@@ -242,7 +242,7 @@ function HelloWorldSlide() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col justify-center h-full gap-6">
+      <div className="flex flex-col justify-center h-full gap-7">
         <AnimatedText>
           <h2 className="text-4xl font-bold text-text-primary">
             {t('intro.hello_world_title')}
@@ -283,7 +283,7 @@ function TakeawaySlide() {
   const { t } = useLanguage()
   return (
     <SlideLayout showBackground>
-      <div className="flex flex-col items-center justify-center h-full text-center gap-8">
+      <div className="flex flex-col items-center justify-center h-full text-center gap-7">
         <motion.div
           variants={springIn}
           initial="hidden"

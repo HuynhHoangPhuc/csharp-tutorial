@@ -12,7 +12,7 @@ function Ch7SectionTitle() {
   const { t } = useLanguage()
   return (
     <SlideLayout showBackground>
-      <div className="flex flex-col items-center justify-center h-full gap-6">
+      <div className="flex flex-col items-center justify-center h-full gap-7">
         <AnimatedText>
           <div className="text-[var(--accent1)] font-display text-lg mb-2 opacity-60">// Chapter 7</div>
         </AnimatedText>
@@ -34,7 +34,7 @@ function Ch7Problem() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col h-full justify-center gap-8">
+      <div className="flex flex-col h-full justify-center gap-6">
         <AnimatedText>
           <GradientText as="h2" className="text-4xl font-bold">
             {t('methods.problem.title')}
@@ -65,7 +65,7 @@ function Ch7WhatIsMethod() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col h-full justify-center gap-8">
+      <div className="flex flex-col h-full justify-center gap-6">
         <AnimatedText>
           <GradientText as="h2" className="text-4xl font-bold">
             {t('methods.concept.title')}
@@ -147,7 +147,7 @@ function Ch7ParamsReturn() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col h-full justify-center gap-8">
+      <div className="flex flex-col h-full justify-center gap-6">
         <AnimatedText>
           <GradientText as="h2" className="text-4xl font-bold">
             {t('methods.params.title')}
@@ -263,7 +263,7 @@ function Ch7VoidVsReturn() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col h-full justify-center gap-8">
+      <div className="flex flex-col h-full justify-center gap-6">
         <AnimatedText>
           <GradientText as="h2" className="text-4xl font-bold">
             {t('methods.void.title')}
@@ -308,7 +308,7 @@ function Ch7Takeaway() {
   const { t } = useLanguage()
   return (
     <SlideLayout showBackground>
-      <div className="flex flex-col items-center justify-center h-full gap-8 text-center">
+      <div className="flex flex-col items-center justify-center h-full gap-7 text-center">
         <AnimatedText>
           <div className="text-[var(--accent1)] font-display text-sm opacity-60 mb-2">// takeaway</div>
           <h2 className="text-4xl font-bold text-text-primary font-display">{t('methods.takeaway.title')}</h2>

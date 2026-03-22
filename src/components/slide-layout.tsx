@@ -15,7 +15,7 @@ export function SlideLayout({ children, className = '', showBackground = false }
     <div className="flex items-center justify-center w-full h-full absolute inset-0">
       <div
         style={containerStyle}
-        className={`relative overflow-hidden bg-bg-primary p-16 font-body ${className}`}
+        className={`relative overflow-hidden bg-bg-primary px-16 py-12 font-body ${className}`}
       >
         {showBackground && <AnimatedBackground />}
         <div className="relative z-10 h-full">

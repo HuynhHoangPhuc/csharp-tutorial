@@ -13,14 +13,14 @@ function Ch4SectionTitle() {
   const { t } = useLanguage()
   return (
     <SlideLayout showBackground>
-      <div className="flex flex-col items-center justify-center h-full gap-6">
+      <div className="flex flex-col items-center justify-center h-full gap-7">
         <AnimatedText>
           <p className="text-[var(--accent1)] text-lg font-display tracking-widest uppercase">
             {t('control.chapter_label')}
           </p>
         </AnimatedText>
         <AnimatedText delay={0.1}>
-          <GradientText as="h1" className="text-7xl font-display font-extrabold text-center leading-tight">
+          <GradientText as="h1" className="text-6xl font-display font-extrabold text-center leading-tight">
             {t('control.title')}
           </GradientText>
         </AnimatedText>
@@ -38,7 +38,7 @@ function Ch4Problem() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col justify-center h-full gap-10">
+      <div className="flex flex-col justify-center h-full gap-7">
         <AnimatedText>
           <h2 className="text-4xl font-bold text-text-primary">{t('control.problem_title')}</h2>
         </AnimatedText>
@@ -67,7 +67,7 @@ function Ch4IfElseSyntax() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col justify-center h-full gap-8">
+      <div className="flex flex-col justify-center h-full gap-7">
         <AnimatedText>
           <h2 className="text-4xl font-bold text-text-primary">{t('control.if_title')}</h2>
         </AnimatedText>
@@ -134,7 +134,7 @@ function Ch4GradeCheckerExample() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col justify-center h-full gap-6">
+      <div className="flex flex-col justify-center h-full gap-7">
         <AnimatedText>
           <h2 className="text-4xl font-bold text-text-primary">
             {t('control.grade_title')}
@@ -219,7 +219,7 @@ function Ch4SwitchSyntax() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col justify-center h-full gap-8">
+      <div className="flex flex-col justify-center h-full gap-7">
         <AnimatedText>
           <h2 className="text-4xl font-bold text-text-primary">{t('control.switch_title')}</h2>
         </AnimatedText>
@@ -283,7 +283,7 @@ function Ch4DayOfWeekExample() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col justify-center h-full gap-6">
+      <div className="flex flex-col justify-center h-full gap-7">
         <AnimatedText>
           <h2 className="text-4xl font-bold text-text-primary">
             {t('control.switch_example_title')}
@@ -303,7 +303,7 @@ function Ch4TernaryOperator() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col justify-center h-full gap-8">
+      <div className="flex flex-col justify-center h-full gap-7">
         <AnimatedText>
           <h2 className="text-4xl font-bold text-text-primary">{t('control.ternary_title')}</h2>
         </AnimatedText>
@@ -382,7 +382,7 @@ function Ch4CombiningConditionsExample() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col justify-center h-full gap-6">
+      <div className="flex flex-col justify-center h-full gap-7">
         <AnimatedText>
           <h2 className="text-4xl font-bold text-text-primary">
             {t('control.combining_title')}
@@ -402,7 +402,7 @@ function Ch4Takeaway() {
   const { t } = useLanguage()
   return (
     <SlideLayout showBackground>
-      <div className="flex flex-col items-center justify-center h-full gap-10">
+      <div className="flex flex-col items-center justify-center h-full gap-7">
         <AnimatedText>
           <GradientText as="h2" className="text-5xl font-display font-bold text-center">
             {t('control.takeaway_title')}

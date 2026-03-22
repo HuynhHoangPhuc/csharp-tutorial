@@ -13,7 +13,7 @@ function ArraysSectionTitle() {
   const { t } = useLanguage()
   return (
     <SlideLayout showBackground>
-      <div className="flex flex-col items-center justify-center h-full gap-6">
+      <div className="flex flex-col items-center justify-center h-full gap-7">
         <AnimatedText>
           <div className="text-[var(--accent1)] text-lg font-semibold tracking-widest uppercase">
             {t('arrays.chapter')}
@@ -47,7 +47,7 @@ function ArraysProblem() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col h-full justify-center gap-8">
+      <div className="flex flex-col h-full justify-center gap-6">
         <AnimatedText>
           <GradientText as="h2" className="text-3xl font-bold">
             {t('arrays.problem.title')}
@@ -83,7 +83,7 @@ function ArrayConcept() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col h-full justify-center gap-8">
+      <div className="flex flex-col h-full justify-center gap-6">
         <AnimatedText>
           <h2 className="text-3xl font-bold text-text-primary font-display">{t('arrays.array.title')}</h2>
         </AnimatedText>
@@ -162,7 +162,7 @@ function ListConcept() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col h-full justify-center gap-8">
+      <div className="flex flex-col h-full justify-center gap-6">
         <AnimatedText>
           <h2 className="text-3xl font-bold text-text-primary font-display">{t('arrays.list.title')}</h2>
         </AnimatedText>
@@ -258,7 +258,7 @@ function ListMethods() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col h-full justify-center gap-8">
+      <div className="flex flex-col h-full justify-center gap-6">
         <AnimatedText>
           <h2 className="text-3xl font-bold text-text-primary font-display">{t('arrays.methods.title')}</h2>
         </AnimatedText>
@@ -347,7 +347,7 @@ function ArraysTakeaway() {
   const { t } = useLanguage()
   return (
     <SlideLayout showBackground>
-      <div className="flex flex-col h-full justify-center gap-8">
+      <div className="flex flex-col h-full justify-center gap-6">
         <AnimatedText>
           <GradientText as="h2" className="text-3xl font-bold">
             {t('arrays.takeaway.title')}

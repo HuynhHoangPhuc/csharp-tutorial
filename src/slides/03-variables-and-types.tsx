@@ -13,14 +13,14 @@ function Ch3SectionTitle() {
   const { t } = useLanguage()
   return (
     <SlideLayout showBackground>
-      <div className="flex flex-col items-center justify-center h-full gap-6">
+      <div className="flex flex-col items-center justify-center h-full gap-7">
         <AnimatedText>
           <p className="text-[var(--accent1)] text-lg font-display tracking-widest uppercase">
             {t('variables.chapter_label')}
           </p>
         </AnimatedText>
         <AnimatedText delay={0.1}>
-          <GradientText as="h1" className="text-7xl font-display font-extrabold text-center leading-tight">
+          <GradientText as="h1" className="text-6xl font-display font-extrabold text-center leading-tight">
             {t('variables.title')}
           </GradientText>
         </AnimatedText>
@@ -38,7 +38,7 @@ function Ch3Problem() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col justify-center h-full gap-10">
+      <div className="flex flex-col justify-center h-full gap-7">
         <AnimatedText>
           <h2 className="text-4xl font-bold text-text-primary">{t('variables.problem_title')}</h2>
         </AnimatedText>
@@ -67,7 +67,7 @@ function Ch3WhatIsVariable() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col justify-center h-full gap-8">
+      <div className="flex flex-col justify-center h-full gap-7">
         <AnimatedText>
           <h2 className="text-4xl font-bold text-text-primary">{t('variables.concept_title')}</h2>
         </AnimatedText>
@@ -137,7 +137,7 @@ function Ch3CommonTypes() {
 
   return (
     <SlideLayout>
-      <div className="flex flex-col justify-center h-full gap-8">
+      <div className="flex flex-col justify-center h-full gap-7">
         <AnimatedText>
           <h2 className="text-4xl font-bold text-text-primary">{t('variables.types_title')}</h2>
         </AnimatedText>
@@ -202,7 +202,7 @@ function Ch3DeclarationExample() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col justify-center h-full gap-6">
+      <div className="flex flex-col justify-center h-full gap-7">
         <AnimatedText>
           <h2 className="text-4xl font-bold text-text-primary">
             {t('variables.declare_title')}
@@ -222,7 +222,7 @@ function Ch3TypeConversionConcept() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col justify-center h-full gap-8">
+      <div className="flex flex-col justify-center h-full gap-7">
         <AnimatedText>
           <h2 className="text-4xl font-bold text-text-primary">
             {t('variables.conversion_title')}
@@ -285,7 +285,7 @@ function Ch3TypeConversionExample() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col justify-center h-full gap-6">
+      <div className="flex flex-col justify-center h-full gap-7">
         <AnimatedText>
           <h2 className="text-4xl font-bold text-text-primary">
             {t('variables.conversion_example_title')}
@@ -305,7 +305,7 @@ function Ch3ConstantsAndInterpolation() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col justify-center h-full gap-8">
+      <div className="flex flex-col justify-center h-full gap-7">
         <AnimatedText>
           <h2 className="text-4xl font-bold text-text-primary">
             {t('variables.const_title')}
@@ -364,7 +364,7 @@ function Ch3ConstExample() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col justify-center h-full gap-6">
+      <div className="flex flex-col justify-center h-full gap-7">
         <AnimatedText>
           <h2 className="text-4xl font-bold text-text-primary">
             {t('variables.const_example_title')}
@@ -384,7 +384,7 @@ function Ch3Takeaway() {
   const { t } = useLanguage()
   return (
     <SlideLayout showBackground>
-      <div className="flex flex-col items-center justify-center h-full gap-10">
+      <div className="flex flex-col items-center justify-center h-full gap-7">
         <AnimatedText>
           <GradientText as="h2" className="text-5xl font-display font-bold text-center">
             {t('variables.takeaway_title')}

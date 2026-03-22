@@ -27,7 +27,7 @@ export function CodeBlock({ code, language = 'csharp', filename }: CodeBlockProp
   }, [code])
 
   return (
-    <div className="rounded-xl border-2 border-white/8 overflow-hidden bg-bg-secondary">
+    <div className="rounded-xl border border-white/10 overflow-hidden bg-bg-secondary">
       {/* Gradient accent bar */}
       <div
         className="h-[3px]"
@@ -56,7 +56,7 @@ export function CodeBlock({ code, language = 'csharp', filename }: CodeBlockProp
         </button>
         <Highlight theme={themes.nightOwl} code={code.trim()} language={language}>
           {({ tokens, getLineProps, getTokenProps }) => (
-            <pre className="overflow-x-auto p-4 text-sm leading-relaxed font-mono">
+            <pre className="overflow-x-auto p-5 text-[13px] leading-normal font-mono">
               {tokens.map((line, i) => (
                 <div key={i} {...getLineProps({ line })} className="flex">
                   <span className="select-none text-text-secondary/40 w-8 text-right mr-4 shrink-0">

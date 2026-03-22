@@ -13,7 +13,7 @@ function LoopsSectionTitle() {
   const { t } = useLanguage()
   return (
     <SlideLayout showBackground>
-      <div className="flex flex-col items-center justify-center h-full gap-6">
+      <div className="flex flex-col items-center justify-center h-full gap-7">
         <AnimatedText>
           <div className="text-[var(--accent1)] text-lg font-semibold tracking-widest uppercase">
             {t('loops.chapter')}
@@ -43,7 +43,7 @@ function LoopsProblem() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col h-full justify-center gap-8">
+      <div className="flex flex-col h-full justify-center gap-6">
         <AnimatedText>
           <GradientText as="h2" className="text-3xl font-bold">
             {t('loops.problem.title')}
@@ -79,7 +79,7 @@ function ForLoopConcept() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col h-full justify-center gap-8">
+      <div className="flex flex-col h-full justify-center gap-6">
         <AnimatedText>
           <h2 className="text-3xl font-bold text-text-primary font-display">
             {t('loops.for.title')}
@@ -167,7 +167,7 @@ function WhileLoopConcept() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col h-full justify-center gap-8">
+      <div className="flex flex-col h-full justify-center gap-6">
         <AnimatedText>
           <h2 className="text-3xl font-bold text-text-primary font-display">{t('loops.while.title')}</h2>
         </AnimatedText>
@@ -256,7 +256,7 @@ function ForeachConcept() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col h-full justify-center gap-8">
+      <div className="flex flex-col h-full justify-center gap-6">
         <AnimatedText>
           <h2 className="text-3xl font-bold text-text-primary font-display">{t('loops.foreach.title')}</h2>
         </AnimatedText>
@@ -342,7 +342,7 @@ function LoopsTakeaway() {
   const { t } = useLanguage()
   return (
     <SlideLayout showBackground>
-      <div className="flex flex-col h-full justify-center gap-8">
+      <div className="flex flex-col h-full justify-center gap-6">
         <AnimatedText>
           <GradientText as="h2" className="text-3xl font-bold">
             {t('loops.takeaway.title')}

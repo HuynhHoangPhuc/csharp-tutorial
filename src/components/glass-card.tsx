@@ -19,7 +19,7 @@ export function GlassCard({ children, className = '', accentBorder = false, hove
       className={`
         relative rounded-2xl overflow-hidden
         bg-white/5 backdrop-blur-xl
-        border-2 border-white/8
+        border border-white/10
         ${className}
       `}
     >

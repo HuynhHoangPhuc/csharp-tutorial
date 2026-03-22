@@ -13,7 +13,7 @@ function SetupTitleSlide() {
   const { t } = useLanguage()
   return (
     <SlideLayout showBackground>
-      <div className="flex flex-col items-center justify-center h-full text-center gap-6">
+      <div className="flex flex-col items-center justify-center h-full text-center gap-7">
         <motion.div
           variants={springIn}
           initial="hidden"
@@ -24,7 +24,7 @@ function SetupTitleSlide() {
         </motion.div>
 
         <AnimatedText delay={0.1}>
-          <GradientText as="h1" className="text-7xl font-display font-extrabold leading-tight">
+          <GradientText as="h1" className="text-6xl font-display font-extrabold leading-tight">
             {t('setup.title')}
           </GradientText>
         </AnimatedText>
@@ -61,7 +61,7 @@ function PrerequisitesSlide() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col justify-center h-full gap-8">
+      <div className="flex flex-col justify-center h-full gap-7">
         <AnimatedText>
           <h2 className="text-4xl font-bold text-text-primary">
             {t('setup.prereq_title')}
@@ -365,7 +365,7 @@ function ProjectStructureSlide() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col justify-center h-full gap-6">
+      <div className="flex flex-col justify-center h-full gap-7">
         <AnimatedText>
           <div className="flex items-center gap-3">
             <span className="bg-[var(--accent1)]/15 border border-[var(--accent1)]/30 rounded px-3 py-1 text-[var(--accent1)] text-sm">
@@ -422,7 +422,7 @@ function SetupTakeawaySlide() {
   const { t } = useLanguage()
   return (
     <SlideLayout showBackground>
-      <div className="flex flex-col items-center justify-center h-full text-center gap-8">
+      <div className="flex flex-col items-center justify-center h-full text-center gap-7">
         <motion.div
           variants={springIn}
           initial="hidden"
