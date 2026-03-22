@@ -83,6 +83,9 @@ function SlideShow() {
     )
   }
 
+  // TOC slide is at index 1 (after intro title)
+  const tocSlideIndex = 1
+  const isOnToc = current === tocSlideIndex
   const CurrentSlide = slides[current]
 
   return (
@@ -92,6 +95,19 @@ function SlideShow() {
         <div className="fixed top-4 right-4 z-50">
           <LanguageSwitcher />
         </div>
+
+        {/* TOC quick-access button */}
+        {!isOnToc && (
+          <button
+            onClick={(e) => { e.stopPropagation(); goToSlide(tocSlideIndex) }}
+            className="fixed top-4 left-4 z-50 bg-bg-card/80 border border-border hover:border-green/40
+              text-text-secondary hover:text-green px-3 py-1.5 rounded font-mono text-xs
+              transition-colors cursor-pointer backdrop-blur-sm"
+            title="Table of Contents"
+          >
+            &equiv; TOC
+          </button>
+        )}
 
         {/* Slide content */}
         <AnimatePresence mode="wait" initial={false}>
