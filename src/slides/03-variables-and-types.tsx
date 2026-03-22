@@ -1,0 +1,443 @@
+import { motion } from 'framer-motion'
+import { SlideLayout } from '../components/slide-layout'
+import { AnimatedText, AnimatedList } from '../components/animated-text'
+import { CodeBlock } from '../components/code-block'
+import { useLanguage } from '../i18n/language-context'
+import { fadeInUp, fadeIn, staggerContainer, scaleIn } from '../lib/animations'
+
+// ─── Slide 1: Section Title ───────────────────────────────────────────────────
+
+function Ch3SectionTitle() {
+  const { t } = useLanguage()
+  return (
+    <SlideLayout>
+      <div className="flex flex-col items-center justify-center h-full gap-6">
+        <AnimatedText>
+          <p className="text-green text-lg tracking-widest uppercase">
+            {t('variables.chapter_label')}
+          </p>
+        </AnimatedText>
+        <AnimatedText delay={0.1}>
+          <h1 className="text-6xl font-bold text-text-primary text-center leading-tight">
+            {t('variables.title')}
+          </h1>
+        </AnimatedText>
+        <AnimatedText delay={0.25}>
+          <p className="text-text-secondary text-xl">{t('variables.subtitle')}</p>
+        </AnimatedText>
+      </div>
+    </SlideLayout>
+  )
+}
+
+// ─── Slide 2: Problem ─────────────────────────────────────────────────────────
+
+function Ch3Problem() {
+  const { t } = useLanguage()
+  return (
+    <SlideLayout>
+      <div className="flex flex-col justify-center h-full gap-10">
+        <AnimatedText>
+          <h2 className="text-4xl font-bold text-text-primary">{t('variables.problem_title')}</h2>
+        </AnimatedText>
+        <AnimatedText delay={0.15}>
+          <div className="bg-bg-card border border-border rounded-xl p-8">
+            <p className="text-2xl text-green font-semibold leading-relaxed">
+              {t('variables.problem_question')}
+            </p>
+          </div>
+        </AnimatedText>
+        <AnimatedList
+          items={[
+            <span key="1" className="text-text-secondary text-lg">{t('variables.problem_bullet1')}</span>,
+            <span key="2" className="text-text-secondary text-lg">{t('variables.problem_bullet2')}</span>,
+            <span key="3" className="text-text-secondary text-lg">{t('variables.problem_bullet3')}</span>,
+          ]}
+        />
+      </div>
+    </SlideLayout>
+  )
+}
+
+// ─── Slide 3: What Is a Variable? ─────────────────────────────────────────────
+
+function Ch3WhatIsVariable() {
+  const { t } = useLanguage()
+  return (
+    <SlideLayout>
+      <div className="flex flex-col justify-center h-full gap-8">
+        <AnimatedText>
+          <h2 className="text-4xl font-bold text-text-primary">{t('variables.concept_title')}</h2>
+        </AnimatedText>
+
+        {/* Box metaphor */}
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          animate="visible"
+          className="flex items-stretch gap-6"
+        >
+          {/* Name */}
+          <motion.div
+            variants={scaleIn}
+            className="flex-1 flex flex-col items-center gap-3 bg-bg-card border border-green/40 rounded-xl p-6"
+          >
+            <span className="text-green text-3xl font-bold">age</span>
+            <span className="text-xs text-text-secondary uppercase tracking-widest">
+              {t('variables.box_name')}
+            </span>
+          </motion.div>
+
+          <div className="flex items-center text-text-secondary text-2xl">:</div>
+
+          {/* Type */}
+          <motion.div
+            variants={scaleIn}
+            className="flex-1 flex flex-col items-center gap-3 bg-bg-card border border-border rounded-xl p-6"
+          >
+            <span className="text-text-primary text-3xl font-bold">int</span>
+            <span className="text-xs text-text-secondary uppercase tracking-widest">
+              {t('variables.box_type')}
+            </span>
+          </motion.div>
+
+          <div className="flex items-center text-text-secondary text-2xl">=</div>
+
+          {/* Value */}
+          <motion.div
+            variants={scaleIn}
+            className="flex-1 flex flex-col items-center gap-3 bg-bg-card border border-border rounded-xl p-6"
+          >
+            <span className="text-text-primary text-3xl font-bold">25</span>
+            <span className="text-xs text-text-secondary uppercase tracking-widest">
+              {t('variables.box_value')}
+            </span>
+          </motion.div>
+        </motion.div>
+
+        <AnimatedText delay={0.4}>
+          <p className="text-text-secondary text-lg">{t('variables.concept_desc')}</p>
+        </AnimatedText>
+      </div>
+    </SlideLayout>
+  )
+}
+
+// ─── Slide 4: Common Types ────────────────────────────────────────────────────
+
+function Ch3CommonTypes() {
+  const { t } = useLanguage()
+
+  const types = [
+    { type: 'int', example: '42', desc: t('variables.type_int') },
+    { type: 'double', example: '3.14', desc: t('variables.type_double') },
+    { type: 'string', example: '"Hello"', desc: t('variables.type_string') },
+    { type: 'bool', example: 'true / false', desc: t('variables.type_bool') },
+    { type: 'char', example: "'A'", desc: t('variables.type_char') },
+  ]
+
+  return (
+    <SlideLayout>
+      <div className="flex flex-col justify-center h-full gap-8">
+        <AnimatedText>
+          <h2 className="text-4xl font-bold text-text-primary">{t('variables.types_title')}</h2>
+        </AnimatedText>
+
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          animate="visible"
+          className="flex flex-col gap-3"
+        >
+          {/* Header row */}
+          <motion.div
+            variants={fadeIn}
+            className="grid grid-cols-3 gap-4 px-4 pb-2 border-b border-border"
+          >
+            <span className="text-text-secondary text-sm uppercase tracking-widest">
+              {t('variables.col_type')}
+            </span>
+            <span className="text-text-secondary text-sm uppercase tracking-widest">
+              {t('variables.col_example')}
+            </span>
+            <span className="text-text-secondary text-sm uppercase tracking-widest">
+              {t('variables.col_desc')}
+            </span>
+          </motion.div>
+
+          {types.map(({ type, example, desc }) => (
+            <motion.div
+              key={type}
+              variants={fadeInUp}
+              className="grid grid-cols-3 gap-4 bg-bg-card border border-border rounded-lg px-4 py-3 items-center"
+            >
+              <span className="text-green font-bold text-lg">{type}</span>
+              <span className="text-text-primary font-mono">{example}</span>
+              <span className="text-text-secondary text-sm">{desc}</span>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </SlideLayout>
+  )
+}
+
+// ─── Slide 5: Declaring & Assigning Variables ─────────────────────────────────
+
+const declarationCode = `// Declare and assign in one line
+int age = 25;
+double price = 9.99;
+string name = "Alice";
+bool isActive = true;
+char grade = 'A';
+
+// Declare first, assign later
+int score;
+score = 100;
+
+// C# can infer the type with 'var'
+var city = "Hanoi";   // compiler knows it's a string
+var count = 0;        // compiler knows it's an int
+
+Console.WriteLine($"Name: {name}, Age: {age}");`
+
+function Ch3DeclarationExample() {
+  const { t } = useLanguage()
+  return (
+    <SlideLayout>
+      <div className="flex flex-col justify-center h-full gap-6">
+        <AnimatedText>
+          <h2 className="text-4xl font-bold text-text-primary">
+            {t('variables.declare_title')}
+          </h2>
+        </AnimatedText>
+        <AnimatedText delay={0.15}>
+          <CodeBlock code={declarationCode} filename="Variables.cs" />
+        </AnimatedText>
+      </div>
+    </SlideLayout>
+  )
+}
+
+// ─── Slide 6: Type Conversion Concept ────────────────────────────────────────
+
+function Ch3TypeConversionConcept() {
+  const { t } = useLanguage()
+  return (
+    <SlideLayout>
+      <div className="flex flex-col justify-center h-full gap-8">
+        <AnimatedText>
+          <h2 className="text-4xl font-bold text-text-primary">
+            {t('variables.conversion_title')}
+          </h2>
+        </AnimatedText>
+        <AnimatedText delay={0.1}>
+          <p className="text-text-secondary text-lg">{t('variables.conversion_desc')}</p>
+        </AnimatedText>
+        <AnimatedList
+          items={[
+            <span key="implicit" className="text-lg">
+              <span className="text-green font-bold">{t('variables.conv_implicit_label')}</span>
+              <span className="text-text-secondary"> — {t('variables.conv_implicit_desc')}</span>
+            </span>,
+            <span key="explicit" className="text-lg">
+              <span className="text-green font-bold">{t('variables.conv_explicit_label')}</span>
+              <span className="text-text-secondary"> — {t('variables.conv_explicit_desc')}</span>
+            </span>,
+            <span key="convert" className="text-lg">
+              <span className="text-green font-bold">Convert.ToInt32()</span>
+              <span className="text-text-secondary"> — {t('variables.conv_convert_desc')}</span>
+            </span>,
+            <span key="parse" className="text-lg">
+              <span className="text-green font-bold">int.Parse()</span>
+              <span className="text-text-secondary"> — {t('variables.conv_parse_desc')}</span>
+            </span>,
+          ]}
+        />
+      </div>
+    </SlideLayout>
+  )
+}
+
+// ─── Slide 7: Type Conversion Example ────────────────────────────────────────
+
+const conversionCode = `// Implicit conversion (no data loss)
+int x = 42;
+double d = x;           // int → double, safe
+
+// Explicit cast (possible data loss)
+double pi = 3.14159;
+int truncated = (int)pi; // 3  — decimal part is dropped
+
+// Convert class (parses strings & handles nulls)
+string input = "100";
+int num = Convert.ToInt32(input);   // 100
+double val = Convert.ToDouble("2.5"); // 2.5
+
+// int.Parse / double.Parse
+int parsed = int.Parse("255");
+
+// Any type → string
+int score = 98;
+string msg = score.ToString();      // "98"
+
+Console.WriteLine(truncated); // 3
+Console.WriteLine(num);       // 100`
+
+function Ch3TypeConversionExample() {
+  const { t } = useLanguage()
+  return (
+    <SlideLayout>
+      <div className="flex flex-col justify-center h-full gap-6">
+        <AnimatedText>
+          <h2 className="text-4xl font-bold text-text-primary">
+            {t('variables.conversion_example_title')}
+          </h2>
+        </AnimatedText>
+        <AnimatedText delay={0.15}>
+          <CodeBlock code={conversionCode} filename="TypeConversion.cs" />
+        </AnimatedText>
+      </div>
+    </SlideLayout>
+  )
+}
+
+// ─── Slide 8: Constants & String Interpolation ────────────────────────────────
+
+function Ch3ConstantsAndInterpolation() {
+  const { t } = useLanguage()
+  return (
+    <SlideLayout>
+      <div className="flex flex-col justify-center h-full gap-8">
+        <AnimatedText>
+          <h2 className="text-4xl font-bold text-text-primary">
+            {t('variables.const_title')}
+          </h2>
+        </AnimatedText>
+
+        {/* const block */}
+        <AnimatedText delay={0.1}>
+          <div className="bg-bg-card border border-border rounded-xl p-6 space-y-2">
+            <p className="text-green text-sm uppercase tracking-widest font-bold mb-3">
+              const
+            </p>
+            <p className="text-text-primary text-base">{t('variables.const_desc')}</p>
+            <p className="text-text-secondary text-sm">{t('variables.const_example_note')}</p>
+          </div>
+        </AnimatedText>
+
+        {/* interpolation block */}
+        <AnimatedText delay={0.25}>
+          <div className="bg-bg-card border border-green/30 rounded-xl p-6 space-y-2">
+            <p className="text-green text-sm uppercase tracking-widest font-bold mb-3">
+              {t('variables.interp_label')}
+            </p>
+            <p className="text-text-primary text-base">{t('variables.interp_desc')}</p>
+            <code className="text-green text-sm">{`$"Hello, {name}! You are {age} years old."`}</code>
+          </div>
+        </AnimatedText>
+      </div>
+    </SlideLayout>
+  )
+}
+
+// ─── Slide 9: Constants & Interpolation Example ───────────────────────────────
+
+const constInterpolationCode = `// Constants — value cannot change after declaration
+const double Pi = 3.14159;
+const string AppName = "MyCSharpApp";
+const int MaxRetries = 3;
+
+// Pi = 4.0; // ❌ compile error — cannot reassign const
+
+// String interpolation with $""
+string name = "Alice";
+int age = 25;
+double height = 1.68;
+
+Console.WriteLine($"Name   : {name}");
+Console.WriteLine($"Age    : {age}");
+Console.WriteLine($"Height : {height:F2} m");
+
+// Expressions are allowed inside {}
+Console.WriteLine($"Born around {2026 - age}");
+Console.WriteLine($"Pi is approximately {Pi:F4}");`
+
+function Ch3ConstExample() {
+  const { t } = useLanguage()
+  return (
+    <SlideLayout>
+      <div className="flex flex-col justify-center h-full gap-6">
+        <AnimatedText>
+          <h2 className="text-4xl font-bold text-text-primary">
+            {t('variables.const_example_title')}
+          </h2>
+        </AnimatedText>
+        <AnimatedText delay={0.15}>
+          <CodeBlock code={constInterpolationCode} filename="Constants.cs" />
+        </AnimatedText>
+      </div>
+    </SlideLayout>
+  )
+}
+
+// ─── Slide 10: Takeaway ───────────────────────────────────────────────────────
+
+function Ch3Takeaway() {
+  const { t } = useLanguage()
+  return (
+    <SlideLayout>
+      <div className="flex flex-col items-center justify-center h-full gap-10">
+        <AnimatedText>
+          <h2 className="text-5xl font-bold text-text-primary text-center">
+            {t('variables.takeaway_title')}
+          </h2>
+        </AnimatedText>
+
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          animate="visible"
+          className="grid grid-cols-2 gap-4 w-full max-w-3xl"
+        >
+          {[
+            { icon: '📦', label: t('variables.takeaway_store') },
+            { icon: '🏷️', label: t('variables.takeaway_type') },
+            { icon: '🔒', label: t('variables.takeaway_const') },
+            { icon: '✨', label: t('variables.takeaway_interp') },
+          ].map(({ icon, label }) => (
+            <motion.div
+              key={label}
+              variants={fadeInUp}
+              className="flex items-center gap-4 bg-bg-card border border-border rounded-xl p-5"
+            >
+              <span className="text-3xl">{icon}</span>
+              <span className="text-text-primary text-base leading-snug">{label}</span>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        <AnimatedText delay={0.5}>
+          <p className="text-green text-xl font-semibold text-center">
+            {t('variables.takeaway_cta')}
+          </p>
+        </AnimatedText>
+      </div>
+    </SlideLayout>
+  )
+}
+
+// ─── Export ───────────────────────────────────────────────────────────────────
+
+export const chapter3Slides = [
+  Ch3SectionTitle,
+  Ch3Problem,
+  Ch3WhatIsVariable,
+  Ch3CommonTypes,
+  Ch3DeclarationExample,
+  Ch3TypeConversionConcept,
+  Ch3TypeConversionExample,
+  Ch3ConstantsAndInterpolation,
+  Ch3ConstExample,
+  Ch3Takeaway,
+]
