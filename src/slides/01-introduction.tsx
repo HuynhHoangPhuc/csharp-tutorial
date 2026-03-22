@@ -4,6 +4,7 @@ import { AnimatedText, AnimatedList } from '../components/animated-text'
 import { CodeBlock } from '../components/code-block'
 import { useLanguage } from '../i18n/language-context'
 import { fadeInUp, staggerContainer, scaleIn } from '../lib/animations'
+import { TocSlide } from './toc-slide'
 
 // Slide 1 — Title
 function TitleSlide() {
@@ -337,6 +338,7 @@ function TakeawaySlide() {
 
 export const chapter1Slides = [
   TitleSlide,
+  TocSlide,
   ProblemSlide,
   WhatIsCSharpSlide,
   WhatCanYouBuildSlide,

@@ -1,6 +1,9 @@
 {
   "nav.lang": "EN",
 
+  "toc.title": "$ ls ./chapters",
+  "toc.hint": "Click a chapter to jump directly",
+
   "intro.chapter_label": "Chapter 1 — Introduction",
   "intro.title": "Learn C# Programming",
   "intro.subtitle": "From zero to building real applications",

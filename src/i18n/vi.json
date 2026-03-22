@@ -1,6 +1,9 @@
 {
   "nav.lang": "VI",
 
+  "toc.title": "$ ls ./chuong",
+  "toc.hint": "Nhấn vào chương để chuyển nhanh",
+
   "intro.chapter_label": "Chương 1 — Giới Thiệu",
   "intro.title": "Học Lập Trình C#",
   "intro.subtitle": "Từ con số không đến xây dựng ứng dụng thực tế",

@@ -1,9 +1,10 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { LanguageProvider } from './i18n/language-context'
 import { LanguageSwitcher } from './components/language-switcher'
 import { ProgressBar } from './components/progress-bar'
-import { slides } from './slides'
+import { slides, getChapterForSlide } from './slides'
+import { SlideNavigationProvider } from './lib/slide-navigation-context'
 
 function SlideShow() {
   const [current, setCurrent] = useState(0)
@@ -30,6 +31,16 @@ function SlideShow() {
     })
   }, [])
 
+  const goToSlide = useCallback((index: number) => {
+    setCurrent((prev) => {
+      if (index >= 0 && index < total && index !== prev) {
+        setDirection(index > prev ? 1 : -1)
+        return index
+      }
+      return prev
+    })
+  }, [total])
+
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
@@ -46,7 +57,6 @@ function SlideShow() {
 
   const handleClick = useCallback(
     (e: React.MouseEvent) => {
-      // Ignore clicks on buttons, links, and interactive elements
       const target = e.target as HTMLElement
       if (target.closest('button, a, input, select, textarea, [role="button"]')) return
 
@@ -56,6 +66,13 @@ function SlideShow() {
       else goPrev()
     },
     [goNext, goPrev]
+  )
+
+  const currentChapter = useMemo(() => getChapterForSlide(current), [current])
+
+  const navContextValue = useMemo(
+    () => ({ goToSlide, current }),
+    [goToSlide, current]
   )
 
   if (total === 0) {
@@ -69,29 +86,31 @@ function SlideShow() {
   const CurrentSlide = slides[current]
 
   return (
-    <div className="relative w-full h-screen" onClick={handleClick}>
-      {/* Header */}
-      <div className="fixed top-4 right-4 z-50">
-        <LanguageSwitcher />
+    <SlideNavigationProvider value={navContextValue}>
+      <div className="relative w-full h-screen" onClick={handleClick}>
+        {/* Header */}
+        <div className="fixed top-4 right-4 z-50">
+          <LanguageSwitcher />
+        </div>
+
+        {/* Slide content */}
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={current}
+            initial={{ opacity: 0, x: direction * 60 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: direction * -60 }}
+            transition={{ duration: 0.35, ease: 'easeOut' }}
+            className="absolute inset-0"
+          >
+            <CurrentSlide />
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Progress */}
+        <ProgressBar current={current} total={total} currentChapter={currentChapter} />
       </div>
-
-      {/* Slide content */}
-      <AnimatePresence mode="wait" initial={false}>
-        <motion.div
-          key={current}
-          initial={{ opacity: 0, x: direction * 60 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: direction * -60 }}
-          transition={{ duration: 0.35, ease: 'easeOut' }}
-          className="absolute inset-0"
-        >
-          <CurrentSlide />
-        </motion.div>
-      </AnimatePresence>
-
-      {/* Progress */}
-      <ProgressBar current={current} total={total} />
-    </div>
+    </SlideNavigationProvider>
   )
 }
 
