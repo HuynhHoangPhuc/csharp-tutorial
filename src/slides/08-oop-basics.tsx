@@ -1,21 +1,25 @@
 import { SlideLayout } from '../components/slide-layout'
 import { AnimatedText, AnimatedList } from '../components/animated-text'
 import { CodeBlock } from '../components/code-block'
+import { GlassCard } from '../components/glass-card'
+import { GradientText } from '../components/gradient-text'
 import { useLanguage } from '../i18n/language-context'
 import { motion } from 'framer-motion'
-import { scaleIn, fadeIn } from '../lib/animations'
+import { bounceIn, springIn, playfulStagger } from '../lib/animations'
 
 // Slide 1: Section title
 function Ch8SectionTitle() {
   const { t } = useLanguage()
   return (
-    <SlideLayout>
+    <SlideLayout showBackground>
       <div className="flex flex-col items-center justify-center h-full gap-6">
         <AnimatedText>
-          <div className="text-green font-mono text-lg mb-2 opacity-60">// Chapter 8</div>
+          <div className="text-[var(--accent1)] font-display text-lg mb-2 opacity-60">// Chapter 8</div>
         </AnimatedText>
         <AnimatedText delay={0.1}>
-          <h1 className="text-5xl font-bold text-green text-center">{t('oop.title')}</h1>
+          <GradientText as="h1" className="text-5xl font-display font-extrabold text-center">
+            {t('oop.title')}
+          </GradientText>
         </AnimatedText>
         <AnimatedText delay={0.3}>
           <p className="text-text-secondary text-xl mt-2 text-center">{t('oop.subtitle')}</p>
@@ -32,7 +36,9 @@ function Ch8Problem() {
     <SlideLayout>
       <div className="flex flex-col h-full justify-center gap-8">
         <AnimatedText>
-          <h2 className="text-4xl font-bold text-green">{t('oop.problem.title')}</h2>
+          <GradientText as="h2" className="text-4xl font-bold">
+            {t('oop.problem.title')}
+          </GradientText>
         </AnimatedText>
         <AnimatedText delay={0.15}>
           <p className="text-text-secondary text-lg">{t('oop.problem.description')}</p>
@@ -40,23 +46,23 @@ function Ch8Problem() {
         <AnimatedList
           items={[
             <span key="1" className="text-text-primary">
-              <span className="text-green font-mono">string studentName = "Alice";</span>
+              <span className="text-[var(--accent1)] font-mono">string studentName = "Alice";</span>
               <span className="text-text-secondary ml-3 text-sm">// scattered variables</span>
             </span>,
             <span key="2" className="text-text-primary">
-              <span className="text-green font-mono">int studentAge = 20;</span>
+              <span className="text-[var(--accent1)] font-mono">int studentAge = 20;</span>
               <span className="text-text-secondary ml-3 text-sm">// hard to manage</span>
             </span>,
             <span key="3" className="text-text-primary">
-              <span className="text-green font-mono">string student2Name = "Bob";</span>
+              <span className="text-[var(--accent1)] font-mono">string student2Name = "Bob";</span>
               <span className="text-text-secondary ml-3 text-sm">// doesn't scale</span>
             </span>,
           ]}
         />
         <AnimatedText delay={0.5}>
-          <div className="bg-bg-card border border-green/30 rounded-lg p-4">
-            <p className="text-green font-mono">{t('oop.problem.solution_hint')}</p>
-          </div>
+          <GlassCard accentBorder className="p-4">
+            <p className="text-[var(--accent1)] font-mono">{t('oop.problem.solution_hint')}</p>
+          </GlassCard>
         </AnimatedText>
       </div>
     </SlideLayout>
@@ -70,24 +76,26 @@ function Ch8ClassVsObject() {
     <SlideLayout>
       <div className="flex flex-col h-full justify-center gap-8">
         <AnimatedText>
-          <h2 className="text-4xl font-bold text-green">{t('oop.class_object.title')}</h2>
+          <GradientText as="h2" className="text-4xl font-bold">
+            {t('oop.class_object.title')}
+          </GradientText>
         </AnimatedText>
         <div className="grid grid-cols-2 gap-6">
           <AnimatedText delay={0.15}>
-            <div className="bg-bg-card border border-green/40 rounded-lg p-5">
-              <div className="text-green font-bold text-xl mb-2 font-mono">{t('oop.class_object.class_label')}</div>
+            <GlassCard accentBorder className="p-5">
+              <div className="text-[var(--accent1)] font-bold text-xl mb-2 font-display">{t('oop.class_object.class_label')}</div>
               <p className="text-text-secondary text-sm mb-4">{t('oop.class_object.class_desc')}</p>
               <div className="text-center text-4xl">📐</div>
               <p className="text-center text-text-secondary text-xs mt-2">{t('oop.class_object.class_analogy')}</p>
-            </div>
+            </GlassCard>
           </AnimatedText>
           <AnimatedText delay={0.25}>
-            <div className="bg-bg-card border border-green/40 rounded-lg p-5">
-              <div className="text-green font-bold text-xl mb-2 font-mono">{t('oop.class_object.object_label')}</div>
+            <GlassCard hoverGlow className="p-5">
+              <div className="text-[var(--accent1)] font-bold text-xl mb-2 font-display">{t('oop.class_object.object_label')}</div>
               <p className="text-text-secondary text-sm mb-4">{t('oop.class_object.object_desc')}</p>
               <div className="text-center text-4xl">🏠</div>
               <p className="text-center text-text-secondary text-xs mt-2">{t('oop.class_object.object_analogy')}</p>
-            </div>
+            </GlassCard>
           </AnimatedText>
         </div>
         <AnimatedText delay={0.4}>
@@ -125,12 +133,14 @@ function Ch8StudentClass() {
     <SlideLayout>
       <div className="flex flex-col h-full justify-center gap-5">
         <AnimatedText>
-          <h2 className="text-4xl font-bold text-green">{t('oop.example1.title')}</h2>
+          <GradientText as="h2" className="text-4xl font-bold">
+            {t('oop.example1.title')}
+          </GradientText>
         </AnimatedText>
         <AnimatedText delay={0.15}>
           <p className="text-text-secondary">{t('oop.example1.description')}</p>
         </AnimatedText>
-        <motion.div variants={scaleIn} initial="hidden" animate="visible" transition={{ delay: 0.3 }}>
+        <motion.div variants={bounceIn} initial="hidden" animate="visible" transition={{ delay: 0.3 }}>
           <CodeBlock code={studentClassCode} filename="Student.cs" />
         </motion.div>
       </div>
@@ -145,11 +155,13 @@ function Ch8PropertiesVsFields() {
     <SlideLayout>
       <div className="flex flex-col h-full justify-center gap-7">
         <AnimatedText>
-          <h2 className="text-4xl font-bold text-green">{t('oop.properties.title')}</h2>
+          <GradientText as="h2" className="text-4xl font-bold">
+            {t('oop.properties.title')}
+          </GradientText>
         </AnimatedText>
         <div className="grid grid-cols-2 gap-6">
           <AnimatedText delay={0.15}>
-            <div className="bg-bg-card border border-border rounded-lg p-5">
+            <GlassCard className="p-5">
               <p className="text-text-secondary font-bold mb-3">{t('oop.properties.field_label')}</p>
               <pre className="text-text-primary text-xs font-mono leading-relaxed">
 {`public class Car
@@ -160,11 +172,11 @@ function Ch8PropertiesVsFields() {
 }`}
               </pre>
               <p className="text-text-secondary text-xs mt-3">{t('oop.properties.field_note')}</p>
-            </div>
+            </GlassCard>
           </AnimatedText>
           <AnimatedText delay={0.25}>
-            <div className="bg-bg-card border border-green/30 rounded-lg p-5">
-              <p className="text-green font-bold mb-3">{t('oop.properties.property_label')}</p>
+            <GlassCard accentBorder hoverGlow className="p-5">
+              <p className="text-[var(--accent1)] font-bold mb-3">{t('oop.properties.property_label')}</p>
               <pre className="text-text-primary text-xs font-mono leading-relaxed">
 {`public class Car
 {
@@ -173,8 +185,8 @@ function Ch8PropertiesVsFields() {
     public int Year { get; set; }
 }`}
               </pre>
-              <p className="text-green text-xs mt-3">{t('oop.properties.property_note')}</p>
-            </div>
+              <p className="text-[var(--accent1)] text-xs mt-3">{t('oop.properties.property_note')}</p>
+            </GlassCard>
           </AnimatedText>
         </div>
         <AnimatedText delay={0.4}>
@@ -192,7 +204,9 @@ function Ch8Constructors() {
     <SlideLayout>
       <div className="flex flex-col h-full justify-center gap-7">
         <AnimatedText>
-          <h2 className="text-4xl font-bold text-green">{t('oop.constructors.title')}</h2>
+          <GradientText as="h2" className="text-4xl font-bold">
+            {t('oop.constructors.title')}
+          </GradientText>
         </AnimatedText>
         <AnimatedText delay={0.15}>
           <p className="text-text-secondary">{t('oop.constructors.description')}</p>
@@ -200,24 +214,24 @@ function Ch8Constructors() {
         <AnimatedList
           items={[
             <span key="1" className="text-text-primary">
-              <span className="text-green">→</span> {t('oop.constructors.rule1')}
+              🎯 {t('oop.constructors.rule1')}
             </span>,
             <span key="2" className="text-text-primary">
-              <span className="text-green">→</span> {t('oop.constructors.rule2')}
+              🎯 {t('oop.constructors.rule2')}
             </span>,
             <span key="3" className="text-text-primary">
-              <span className="text-green">→</span> {t('oop.constructors.rule3')}
+              🎯 {t('oop.constructors.rule3')}
             </span>,
           ]}
         />
         <AnimatedText delay={0.5}>
-          <div className="bg-bg-card border border-border rounded-lg p-4 font-mono text-sm">
+          <GlassCard className="p-4 font-mono text-sm">
             <span className="text-text-secondary">// syntax: </span>
-            <span className="text-green">public</span>
+            <span className="text-[var(--accent1)]">public</span>
             <span className="text-text-primary"> ClassName(</span>
-            <span className="text-green">parameters</span>
+            <span className="text-[var(--accent1)]">parameters</span>
             <span className="text-text-primary">) {'{ ... }'}</span>
-          </div>
+          </GlassCard>
         </AnimatedText>
       </div>
     </SlideLayout>
@@ -256,12 +270,14 @@ function Ch8ConstructorExample() {
     <SlideLayout>
       <div className="flex flex-col h-full justify-center gap-5">
         <AnimatedText>
-          <h2 className="text-4xl font-bold text-green">{t('oop.example2.title')}</h2>
+          <GradientText as="h2" className="text-4xl font-bold">
+            {t('oop.example2.title')}
+          </GradientText>
         </AnimatedText>
         <AnimatedText delay={0.15}>
           <p className="text-text-secondary">{t('oop.example2.description')}</p>
         </AnimatedText>
-        <motion.div variants={scaleIn} initial="hidden" animate="visible" transition={{ delay: 0.3 }}>
+        <motion.div variants={bounceIn} initial="hidden" animate="visible" transition={{ delay: 0.3 }}>
           <CodeBlock code={constructorCode} filename="Student.cs" />
         </motion.div>
       </div>
@@ -276,7 +292,9 @@ function Ch8AccessModifiers() {
     <SlideLayout>
       <div className="flex flex-col h-full justify-center gap-7">
         <AnimatedText>
-          <h2 className="text-4xl font-bold text-green">{t('oop.access.title')}</h2>
+          <GradientText as="h2" className="text-4xl font-bold">
+            {t('oop.access.title')}
+          </GradientText>
         </AnimatedText>
         <AnimatedText delay={0.1}>
           <p className="text-text-secondary">{t('oop.access.description')}</p>
@@ -284,28 +302,28 @@ function Ch8AccessModifiers() {
         <AnimatedList
           items={[
             <span key="1" className="flex items-baseline gap-3">
-              <code className="text-green font-bold font-mono w-24 shrink-0">public</code>
+              <code className="text-[var(--accent1)] font-bold font-mono w-24 shrink-0">public</code>
               <span className="text-text-primary">{t('oop.access.public_desc')}</span>
             </span>,
             <span key="2" className="flex items-baseline gap-3">
-              <code className="text-green font-bold font-mono w-24 shrink-0">private</code>
+              <code className="text-[var(--accent1)] font-bold font-mono w-24 shrink-0">private</code>
               <span className="text-text-primary">{t('oop.access.private_desc')}</span>
             </span>,
             <span key="3" className="flex items-baseline gap-3">
-              <code className="text-green font-bold font-mono w-24 shrink-0">protected</code>
+              <code className="text-[var(--accent1)] font-bold font-mono w-24 shrink-0">protected</code>
               <span className="text-text-primary">{t('oop.access.protected_desc')}</span>
             </span>,
           ]}
         />
         <AnimatedText delay={0.5}>
-          <div className="bg-bg-card border border-border rounded-lg p-4 font-mono text-xs leading-relaxed">
+          <GlassCard className="p-4 font-mono text-xs leading-relaxed">
             <span className="text-text-secondary">// good practice: fields private, properties/methods public</span>
             <br />
-            <span className="text-green">private</span>
+            <span className="text-[var(--accent1)]">private</span>
             <span className="text-text-primary"> int _score;{'  '}</span>
-            <span className="text-green">public</span>
+            <span className="text-[var(--accent1)]">public</span>
             <span className="text-text-primary"> int Score {'{ get; private set; }'}</span>
-          </div>
+          </GlassCard>
         </AnimatedText>
       </div>
     </SlideLayout>
@@ -346,12 +364,14 @@ function Ch8Inheritance() {
     <SlideLayout>
       <div className="flex flex-col h-full justify-center gap-5">
         <AnimatedText>
-          <h2 className="text-4xl font-bold text-green">{t('oop.inheritance.title')}</h2>
+          <GradientText as="h2" className="text-4xl font-bold">
+            {t('oop.inheritance.title')}
+          </GradientText>
         </AnimatedText>
         <AnimatedText delay={0.15}>
           <p className="text-text-secondary">{t('oop.inheritance.description')}</p>
         </AnimatedText>
-        <motion.div variants={scaleIn} initial="hidden" animate="visible" transition={{ delay: 0.3 }}>
+        <motion.div variants={bounceIn} initial="hidden" animate="visible" transition={{ delay: 0.3 }}>
           <CodeBlock code={inheritanceCode} filename="Animals.cs" />
         </motion.div>
       </div>
@@ -363,12 +383,14 @@ function Ch8Inheritance() {
 function Ch8Congratulations() {
   const { t } = useLanguage()
   return (
-    <SlideLayout>
+    <SlideLayout showBackground>
       <div className="flex flex-col items-center justify-center h-full gap-7 text-center">
         {/* Header */}
         <AnimatedText>
-          <div className="text-green font-mono text-sm opacity-60 mb-1">// 8 chapters complete</div>
-          <h1 className="text-5xl font-bold text-green">{t('end.title')}</h1>
+          <div className="text-[var(--accent1)] font-display text-sm opacity-60 mb-1">// 8 chapters complete</div>
+          <GradientText as="h1" className="text-5xl font-display font-extrabold">
+            {t('end.title')}
+          </GradientText>
         </AnimatedText>
 
         {/* Chapters recap */}
@@ -376,7 +398,7 @@ function Ch8Congratulations() {
           <p className="text-text-secondary text-lg">{t('end.recap_label')}</p>
         </AnimatedText>
         <motion.div
-          variants={fadeIn}
+          variants={playfulStagger}
           initial="hidden"
           animate="visible"
           transition={{ delay: 0.35 }}
@@ -384,13 +406,12 @@ function Ch8Congratulations() {
         >
           {(['end.ch1', 'end.ch2', 'end.ch3', 'end.ch4', 'end.ch5', 'end.ch6', 'end.ch7', 'end.ch8'] as const).map(
             (key, i) => (
-              <div
-                key={i}
-                className="bg-bg-card border border-green/20 rounded-lg px-3 py-2 text-xs text-text-secondary hover:border-green/50 transition-colors"
-              >
-                <span className="text-green font-mono text-xs">{String(i + 1).padStart(2, '0')}. </span>
-                {t(key)}
-              </div>
+              <motion.div key={i} variants={springIn}>
+                <GlassCard hoverGlow className="px-3 py-2 text-xs text-text-secondary">
+                  <span className="text-[var(--accent1)] font-mono text-xs">{String(i + 1).padStart(2, '0')}. </span>
+                  {t(key)}
+                </GlassCard>
+              </motion.div>
             )
           )}
         </motion.div>
@@ -403,16 +424,16 @@ function Ch8Congratulations() {
           className="flex flex-row flex-wrap justify-center gap-3 !space-y-0"
           itemClassName="inline-block"
           items={[
-            <span key="linq" className="bg-bg-card border border-green/40 text-green font-mono text-sm px-4 py-2 rounded-full">LINQ</span>,
-            <span key="async" className="bg-bg-card border border-green/40 text-green font-mono text-sm px-4 py-2 rounded-full">async / await</span>,
-            <span key="asp" className="bg-bg-card border border-green/40 text-green font-mono text-sm px-4 py-2 rounded-full">ASP.NET Core</span>,
-            <span key="unity" className="bg-bg-card border border-green/40 text-green font-mono text-sm px-4 py-2 rounded-full">Unity</span>,
+            <span key="linq" className="bg-[var(--accent1)]/15 border border-[var(--accent1)]/30 text-[var(--accent1)] font-mono text-sm px-4 py-2 rounded-full">LINQ</span>,
+            <span key="async" className="bg-[var(--accent1)]/15 border border-[var(--accent1)]/30 text-[var(--accent1)] font-mono text-sm px-4 py-2 rounded-full">async / await</span>,
+            <span key="asp" className="bg-[var(--accent1)]/15 border border-[var(--accent1)]/30 text-[var(--accent1)] font-mono text-sm px-4 py-2 rounded-full">ASP.NET Core</span>,
+            <span key="unity" className="bg-[var(--accent1)]/15 border border-[var(--accent1)]/30 text-[var(--accent1)] font-mono text-sm px-4 py-2 rounded-full">Unity</span>,
           ]}
         />
 
         {/* Closing message */}
         <AnimatedText delay={0.85}>
-          <p className="text-text-secondary text-sm font-mono opacity-70">{t('end.footer')}</p>
+          <p className="text-text-secondary text-sm font-body opacity-70">{t('end.footer')}</p>
         </AnimatedText>
       </div>
     </SlideLayout>

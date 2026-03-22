@@ -5,6 +5,7 @@ import { LanguageSwitcher } from './components/language-switcher'
 import { ProgressBar } from './components/progress-bar'
 import { slides, getChapterForSlide } from './slides'
 import { SlideNavigationProvider } from './lib/slide-navigation-context'
+import { ChapterThemeProvider } from './lib/chapter-theme-context'
 
 function SlideShow() {
   const [current, setCurrent] = useState(0)
@@ -83,49 +84,50 @@ function SlideShow() {
     )
   }
 
-  // TOC slide is at index 1 (after intro title)
   const tocSlideIndex = 1
   const isOnToc = current === tocSlideIndex
   const CurrentSlide = slides[current]
+  const chapterIndex = currentChapter?.chapterIndex ?? 0
 
   return (
     <SlideNavigationProvider value={navContextValue}>
-      <div className="relative w-full h-screen" onClick={handleClick}>
-        {/* Header */}
-        <div className="fixed top-4 right-4 z-50">
-          <LanguageSwitcher />
+      <ChapterThemeProvider chapterIndex={chapterIndex}>
+        <div className="relative w-full h-screen" onClick={handleClick}>
+          {/* Header */}
+          <div className="fixed top-4 right-4 z-50">
+            <LanguageSwitcher />
+          </div>
+
+          {/* TOC quick-access button */}
+          {!isOnToc && (
+            <button
+              onClick={(e) => { e.stopPropagation(); goToSlide(tocSlideIndex) }}
+              className="fixed top-4 left-4 z-50 glass px-3 py-1.5 font-display text-xs font-semibold
+                text-text-secondary hover:text-[var(--accent1)] transition-colors cursor-pointer"
+              title="Table of Contents"
+            >
+              &equiv; TOC
+            </button>
+          )}
+
+          {/* Slide content */}
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={current}
+              initial={{ opacity: 0, x: direction * 40, scale: 0.97 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              exit={{ opacity: 0, x: direction * -40, scale: 0.97 }}
+              transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
+              className="absolute inset-0"
+            >
+              <CurrentSlide />
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Progress */}
+          <ProgressBar current={current} total={total} currentChapter={currentChapter} />
         </div>
-
-        {/* TOC quick-access button */}
-        {!isOnToc && (
-          <button
-            onClick={(e) => { e.stopPropagation(); goToSlide(tocSlideIndex) }}
-            className="fixed top-4 left-4 z-50 bg-bg-card/80 border border-border hover:border-green/40
-              text-text-secondary hover:text-green px-3 py-1.5 rounded font-mono text-xs
-              transition-colors cursor-pointer backdrop-blur-sm"
-            title="Table of Contents"
-          >
-            &equiv; TOC
-          </button>
-        )}
-
-        {/* Slide content */}
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div
-            key={current}
-            initial={{ opacity: 0, x: direction * 60 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: direction * -60 }}
-            transition={{ duration: 0.35, ease: 'easeOut' }}
-            className="absolute inset-0"
-          >
-            <CurrentSlide />
-          </motion.div>
-        </AnimatePresence>
-
-        {/* Progress */}
-        <ProgressBar current={current} total={total} currentChapter={currentChapter} />
-      </div>
+      </ChapterThemeProvider>
     </SlideNavigationProvider>
   )
 }

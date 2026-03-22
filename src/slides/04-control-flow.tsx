@@ -2,25 +2,27 @@ import { motion } from 'framer-motion'
 import { SlideLayout } from '../components/slide-layout'
 import { AnimatedText, AnimatedList } from '../components/animated-text'
 import { CodeBlock } from '../components/code-block'
+import { GlassCard } from '../components/glass-card'
+import { GradientText } from '../components/gradient-text'
 import { useLanguage } from '../i18n/language-context'
-import { fadeInUp, fadeIn, staggerContainer, scaleIn } from '../lib/animations'
+import { fadeIn, springIn, bounceIn, playfulStagger } from '../lib/animations'
 
 // ─── Slide 1: Section Title ───────────────────────────────────────────────────
 
 function Ch4SectionTitle() {
   const { t } = useLanguage()
   return (
-    <SlideLayout>
+    <SlideLayout showBackground>
       <div className="flex flex-col items-center justify-center h-full gap-6">
         <AnimatedText>
-          <p className="text-green text-lg tracking-widest uppercase">
+          <p className="text-[var(--accent1)] text-lg font-display tracking-widest uppercase">
             {t('control.chapter_label')}
           </p>
         </AnimatedText>
         <AnimatedText delay={0.1}>
-          <h1 className="text-6xl font-bold text-text-primary text-center leading-tight">
+          <GradientText as="h1" className="text-7xl font-display font-extrabold text-center leading-tight">
             {t('control.title')}
-          </h1>
+          </GradientText>
         </AnimatedText>
         <AnimatedText delay={0.25}>
           <p className="text-text-secondary text-xl">{t('control.subtitle')}</p>
@@ -41,11 +43,11 @@ function Ch4Problem() {
           <h2 className="text-4xl font-bold text-text-primary">{t('control.problem_title')}</h2>
         </AnimatedText>
         <AnimatedText delay={0.15}>
-          <div className="bg-bg-card border border-border rounded-xl p-8">
-            <p className="text-2xl text-green font-semibold leading-relaxed">
-              {t('control.problem_question')}
+          <GlassCard accentBorder className="p-8">
+            <p className="text-2xl font-semibold leading-relaxed">
+              <GradientText>{t('control.problem_question')}</GradientText>
             </p>
-          </div>
+          </GlassCard>
         </AnimatedText>
         <AnimatedList
           items={[
@@ -75,7 +77,7 @@ function Ch4IfElseSyntax() {
 
         {/* Syntax anatomy */}
         <motion.div
-          variants={staggerContainer}
+          variants={playfulStagger}
           initial="hidden"
           animate="visible"
           className="flex flex-col gap-3"
@@ -85,17 +87,13 @@ function Ch4IfElseSyntax() {
             { keyword: 'else if (condition)', desc: t('control.if_elseif_desc'), highlight: false },
             { keyword: 'else', desc: t('control.if_else_desc'), highlight: false },
           ].map(({ keyword, desc, highlight }) => (
-            <motion.div
-              key={keyword}
-              variants={fadeInUp}
-              className="flex items-center gap-5 bg-bg-card border border-border rounded-lg px-5 py-4"
-            >
-              <code
-                className={`text-lg font-bold min-w-[220px] ${highlight ? 'text-green' : 'text-text-primary'}`}
-              >
-                {keyword}
-              </code>
-              <span className="text-text-secondary">{desc}</span>
+            <motion.div key={keyword} variants={springIn}>
+              <GlassCard className="flex items-center gap-5 px-5 py-4">
+                <code className={`text-lg font-bold min-w-[220px] ${highlight ? 'text-[var(--accent1)]' : 'text-text-primary'}`}>
+                  {keyword}
+                </code>
+                <span className="text-text-secondary">{desc}</span>
+              </GlassCard>
             </motion.div>
           ))}
         </motion.div>
@@ -177,38 +175,34 @@ function Ch4Operators() {
 
         <div className="grid grid-cols-2 gap-6">
           {/* Comparison */}
-          <motion.div variants={staggerContainer} initial="hidden" animate="visible">
-            <motion.p variants={fadeIn} className="text-green text-sm uppercase tracking-widest mb-3">
+          <motion.div variants={playfulStagger} initial="hidden" animate="visible">
+            <motion.p variants={fadeIn} className="text-[var(--accent1)] text-sm uppercase tracking-widest mb-3">
               {t('control.op_comparison_label')}
             </motion.p>
             <div className="flex flex-col gap-2">
               {comparisonOps.map(({ op, label }) => (
-                <motion.div
-                  key={op}
-                  variants={fadeInUp}
-                  className="flex items-center gap-4 bg-bg-card border border-border rounded-lg px-4 py-3"
-                >
-                  <code className="text-green font-bold text-lg w-16 shrink-0">{op}</code>
-                  <span className="text-text-secondary text-sm">{label}</span>
+                <motion.div key={op} variants={springIn}>
+                  <GlassCard className="flex items-center gap-4 px-4 py-3">
+                    <code className="text-[var(--accent1)] font-bold text-lg w-16 shrink-0">{op}</code>
+                    <span className="text-text-secondary text-sm">{label}</span>
+                  </GlassCard>
                 </motion.div>
               ))}
             </div>
           </motion.div>
 
           {/* Logical */}
-          <motion.div variants={staggerContainer} initial="hidden" animate="visible">
-            <motion.p variants={fadeIn} className="text-green text-sm uppercase tracking-widest mb-3">
+          <motion.div variants={playfulStagger} initial="hidden" animate="visible">
+            <motion.p variants={fadeIn} className="text-[var(--accent1)] text-sm uppercase tracking-widest mb-3">
               {t('control.op_logical_label')}
             </motion.p>
             <div className="flex flex-col gap-2">
               {logicalOps.map(({ op, label }) => (
-                <motion.div
-                  key={op}
-                  variants={fadeInUp}
-                  className="flex items-center gap-4 bg-bg-card border border-border rounded-lg px-4 py-3"
-                >
-                  <code className="text-green font-bold text-lg w-16 shrink-0">{op}</code>
-                  <span className="text-text-secondary text-sm">{label}</span>
+                <motion.div key={op} variants={springIn}>
+                  <GlassCard className="flex items-center gap-4 px-4 py-3">
+                    <code className="text-[var(--accent1)] font-bold text-lg w-16 shrink-0">{op}</code>
+                    <span className="text-text-secondary text-sm">{label}</span>
+                  </GlassCard>
                 </motion.div>
               ))}
             </div>
@@ -234,7 +228,7 @@ function Ch4SwitchSyntax() {
         </AnimatedText>
 
         <motion.div
-          variants={staggerContainer}
+          variants={playfulStagger}
           initial="hidden"
           animate="visible"
           className="flex flex-col gap-3"
@@ -245,13 +239,11 @@ function Ch4SwitchSyntax() {
             { keyword: 'break;', desc: t('control.switch_break_desc') },
             { keyword: 'default:', desc: t('control.switch_default_desc') },
           ].map(({ keyword, desc }) => (
-            <motion.div
-              key={keyword}
-              variants={fadeInUp}
-              className="flex items-center gap-5 bg-bg-card border border-border rounded-lg px-5 py-3"
-            >
-              <code className="text-green font-bold min-w-[200px]">{keyword}</code>
-              <span className="text-text-secondary text-sm">{desc}</span>
+            <motion.div key={keyword} variants={springIn}>
+              <GlassCard className="flex items-center gap-5 px-5 py-3">
+                <code className="text-[var(--accent1)] font-bold min-w-[200px]">{keyword}</code>
+                <span className="text-text-secondary text-sm">{desc}</span>
+              </GlassCard>
             </motion.div>
           ))}
         </motion.div>
@@ -321,21 +313,21 @@ function Ch4TernaryOperator() {
 
         {/* Syntax breakdown */}
         <AnimatedText delay={0.2}>
-          <div className="bg-bg-card border border-green/30 rounded-xl p-6">
+          <GlassCard accentBorder className="p-6">
             <div className="flex flex-wrap items-center gap-2 text-xl font-mono">
-              <span className="text-text-secondary px-3 py-1 rounded bg-bg-primary border border-border">
+              <span className="text-text-secondary px-3 py-1 rounded bg-white/5 border border-white/10">
                 condition
               </span>
-              <span className="text-green font-bold">?</span>
-              <span className="text-text-primary px-3 py-1 rounded bg-bg-primary border border-border">
+              <GradientText className="font-bold">?</GradientText>
+              <span className="text-text-primary px-3 py-1 rounded bg-white/5 border border-white/10">
                 valueIfTrue
               </span>
-              <span className="text-green font-bold">:</span>
-              <span className="text-text-primary px-3 py-1 rounded bg-bg-primary border border-border">
+              <GradientText className="font-bold">:</GradientText>
+              <span className="text-text-primary px-3 py-1 rounded bg-white/5 border border-white/10">
                 valueIfFalse
               </span>
             </div>
-          </div>
+          </GlassCard>
         </AnimatedText>
 
         <AnimatedList
@@ -347,7 +339,7 @@ function Ch4TernaryOperator() {
               {t('control.ternary_bullet2')}
             </span>,
             <span key="3" className="text-text-secondary text-base">
-              <code className="text-green">
+              <code className="text-[var(--accent1)]">
                 {`int abs = (n >= 0) ? n : -n;`}
               </code>
             </span>,
@@ -409,16 +401,16 @@ function Ch4CombiningConditionsExample() {
 function Ch4Takeaway() {
   const { t } = useLanguage()
   return (
-    <SlideLayout>
+    <SlideLayout showBackground>
       <div className="flex flex-col items-center justify-center h-full gap-10">
         <AnimatedText>
-          <h2 className="text-5xl font-bold text-text-primary text-center">
+          <GradientText as="h2" className="text-5xl font-display font-bold text-center">
             {t('control.takeaway_title')}
-          </h2>
+          </GradientText>
         </AnimatedText>
 
         <motion.div
-          variants={staggerContainer}
+          variants={playfulStagger}
           initial="hidden"
           animate="visible"
           className="grid grid-cols-2 gap-4 w-full max-w-3xl"
@@ -429,20 +421,18 @@ function Ch4Takeaway() {
             { icon: '⚡', label: t('control.takeaway_ternary') },
             { icon: '🔗', label: t('control.takeaway_logical') },
           ].map(({ icon, label }) => (
-            <motion.div
-              key={label}
-              variants={fadeInUp}
-              className="flex items-center gap-4 bg-bg-card border border-border rounded-xl p-5"
-            >
-              <span className="text-3xl">{icon}</span>
-              <span className="text-text-primary text-base leading-snug">{label}</span>
+            <motion.div key={label} variants={bounceIn}>
+              <GlassCard hoverGlow className="flex items-center gap-4 p-5">
+                <span className="text-3xl">{icon}</span>
+                <span className="text-text-primary text-base leading-snug">{label}</span>
+              </GlassCard>
             </motion.div>
           ))}
         </motion.div>
 
         <AnimatedText delay={0.5}>
-          <p className="text-green text-xl font-semibold text-center">
-            {t('control.takeaway_cta')}
+          <p className="text-xl font-semibold text-center">
+            <GradientText>{t('control.takeaway_cta')}</GradientText>
           </p>
         </AnimatedText>
       </div>

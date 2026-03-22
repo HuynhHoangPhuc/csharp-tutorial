@@ -1,4 +1,5 @@
 import { useLanguage } from '../i18n/language-context'
+import { chapterEmojis } from '../lib/theme'
 import type { Chapter } from '../slides'
 
 interface ProgressBarProps {
@@ -13,19 +14,26 @@ export function ProgressBar({ current, total, currentChapter }: ProgressBarProps
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 flex items-center">
-      <div className="flex-1 h-1 bg-bg-secondary">
+      <div className="flex-1 h-[3px] bg-bg-secondary">
         <div
-          className="h-full bg-green transition-all duration-300 ease-out"
-          style={{ width: `${progress}%` }}
+          className="h-full transition-all duration-300 ease-out"
+          style={{
+            width: `${progress}%`,
+            background: 'linear-gradient(90deg, var(--accent1), var(--accent2))',
+          }}
         />
       </div>
-      <div className="px-4 py-2 text-text-secondary font-mono text-xs flex items-center gap-3">
+      <div className="px-4 py-2 text-text-secondary text-xs flex items-center gap-3">
         {currentChapter && (
-          <span className="text-green/70">
+          <span
+            className="font-display font-semibold px-2.5 py-0.5 rounded-full glass text-xs"
+            style={{ color: 'var(--accent1)' }}
+          >
+            {chapterEmojis[currentChapter.chapterIndex] ?? '📖'}{' '}
             Ch.{currentChapter.chapter.id} {t(currentChapter.chapter.titleKey)}
           </span>
         )}
-        <span>{current + 1} / {total}</span>
+        <span className="font-mono">{current + 1} / {total}</span>
       </div>
     </div>
   )

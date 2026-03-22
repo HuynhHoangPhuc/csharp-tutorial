@@ -1,32 +1,34 @@
 import { SlideLayout } from '../components/slide-layout'
 import { AnimatedText, AnimatedList } from '../components/animated-text'
 import { CodeBlock } from '../components/code-block'
+import { GlassCard } from '../components/glass-card'
+import { GradientText } from '../components/gradient-text'
 import { useLanguage } from '../i18n/language-context'
 import { motion } from 'framer-motion'
-import { fadeInUp, staggerContainer } from '../lib/animations'
+import { springIn, playfulStagger } from '../lib/animations'
 
 // ─── Slide 1: Section Title ───────────────────────────────────────────────────
 
 function ArraysSectionTitle() {
   const { t } = useLanguage()
   return (
-    <SlideLayout>
+    <SlideLayout showBackground>
       <div className="flex flex-col items-center justify-center h-full gap-6">
         <AnimatedText>
-          <div className="text-green text-lg font-semibold tracking-widest uppercase">
+          <div className="text-[var(--accent1)] text-lg font-semibold tracking-widest uppercase">
             {t('arrays.chapter')}
           </div>
         </AnimatedText>
         <AnimatedText delay={0.15}>
-          <h1 className="text-5xl font-bold text-text-primary text-center">
+          <GradientText as="h1" className="text-5xl font-display font-extrabold text-center">
             {t('arrays.title')}
-          </h1>
+          </GradientText>
         </AnimatedText>
         <AnimatedText delay={0.3}>
           <p className="text-xl text-text-secondary">{t('arrays.subtitle')}</p>
         </AnimatedText>
         <AnimatedText delay={0.5}>
-          <div className="mt-4 flex gap-6 text-green font-mono text-xl tracking-wider">
+          <div className="mt-4 flex gap-6 text-[var(--accent1)] font-display text-xl tracking-wider">
             <span>{'int[]'}</span>
             <span className="text-text-secondary">{'|'}</span>
             <span>{'List<T>'}</span>
@@ -47,10 +49,12 @@ function ArraysProblem() {
     <SlideLayout>
       <div className="flex flex-col h-full justify-center gap-8">
         <AnimatedText>
-          <h2 className="text-3xl font-bold text-green">{t('arrays.problem.title')}</h2>
+          <GradientText as="h2" className="text-3xl font-bold">
+            {t('arrays.problem.title')}
+          </GradientText>
         </AnimatedText>
         <AnimatedText delay={0.2}>
-          <div className="bg-bg-card border border-border rounded-lg p-6">
+          <GlassCard className="p-6">
             <p className="text-text-secondary text-sm mb-4 uppercase tracking-widest">
               {t('arrays.problem.without_arrays')}
             </p>
@@ -60,13 +64,13 @@ string student2 = "Bob";
 string student3 = "Carol";
 // ... 47 more variables`}
             </pre>
-          </div>
+          </GlassCard>
         </AnimatedText>
         <AnimatedText delay={0.4}>
           <p className="text-xl text-text-primary">{t('arrays.problem.question')}</p>
         </AnimatedText>
         <AnimatedText delay={0.55}>
-          <p className="text-green text-lg">{t('arrays.problem.answer')}</p>
+          <p className="text-[var(--accent1)] text-lg">{t('arrays.problem.answer')}</p>
         </AnimatedText>
       </div>
     </SlideLayout>
@@ -81,7 +85,7 @@ function ArrayConcept() {
     <SlideLayout>
       <div className="flex flex-col h-full justify-center gap-8">
         <AnimatedText>
-          <h2 className="text-3xl font-bold text-text-primary">{t('arrays.array.title')}</h2>
+          <h2 className="text-3xl font-bold text-text-primary font-display">{t('arrays.array.title')}</h2>
         </AnimatedText>
 
         {/* Visual: array boxes */}
@@ -90,7 +94,7 @@ function ArrayConcept() {
             <span className="text-text-secondary text-sm mr-2">{t('arrays.array.index_label')}</span>
             {[0, 1, 2, 3, 4].map((i) => (
               <div key={i} className="flex flex-col items-center">
-                <div className="w-14 h-12 bg-bg-card border border-green/50 rounded flex items-center justify-center text-text-primary font-mono text-sm">
+                <div className="w-14 h-12 bg-[var(--accent1)]/10 border border-[var(--accent1)]/50 rounded flex items-center justify-center text-text-primary font-mono text-sm">
                   {['10', '20', '30', '40', '50'][i]}
                 </div>
                 <span className="text-text-secondary text-xs mt-1">[{i}]</span>
@@ -106,7 +110,7 @@ function ArrayConcept() {
             <span key="c" className="text-text-primary text-base">{t('arrays.array.point3')}</span>,
             <span key="d" className="text-text-primary text-base">{t('arrays.array.point4')}</span>,
           ]}
-          itemClassName="flex items-start gap-3 before:content-['▸'] before:text-green before:mt-0.5 before:shrink-0"
+          itemClassName="flex items-start gap-3 before:content-['▸'] before:text-[var(--accent1)] before:mt-0.5 before:shrink-0"
         />
       </div>
     </SlideLayout>
@@ -137,13 +141,13 @@ function ArrayExample() {
     <SlideLayout>
       <div className="flex flex-col h-full justify-center gap-6">
         <AnimatedText>
-          <h2 className="text-3xl font-bold text-text-primary">{t('arrays.array.example_title')}</h2>
+          <h2 className="text-3xl font-bold text-text-primary font-display">{t('arrays.array.example_title')}</h2>
         </AnimatedText>
         <AnimatedText delay={0.2}>
           <CodeBlock code={arrayCode} language="csharp" filename="Arrays.cs" />
         </AnimatedText>
         <AnimatedText delay={0.4}>
-          <p className="text-text-secondary text-sm border-l-2 border-green pl-4">
+          <p className="text-text-secondary text-sm border-l-2 pl-4" style={{ borderColor: 'var(--accent1)' }}>
             {t('arrays.array.example_note')}
           </p>
         </AnimatedText>
@@ -160,12 +164,12 @@ function ListConcept() {
     <SlideLayout>
       <div className="flex flex-col h-full justify-center gap-8">
         <AnimatedText>
-          <h2 className="text-3xl font-bold text-text-primary">{t('arrays.list.title')}</h2>
+          <h2 className="text-3xl font-bold text-text-primary font-display">{t('arrays.list.title')}</h2>
         </AnimatedText>
 
         <div className="grid grid-cols-2 gap-6">
           <AnimatedText delay={0.2}>
-            <div className="bg-bg-card border border-border rounded-lg p-5">
+            <GlassCard className="p-5">
               <div className="text-text-secondary text-xs uppercase tracking-widest mb-3">
                 {t('arrays.list.array_label')}
               </div>
@@ -176,12 +180,12 @@ function ListConcept() {
                   <span key="c" className="text-text-secondary text-sm">{t('arrays.list.array_point3')}</span>,
                 ]}
               />
-            </div>
+            </GlassCard>
           </AnimatedText>
 
           <AnimatedText delay={0.35}>
-            <div className="bg-bg-card border border-green/40 rounded-lg p-5">
-              <div className="text-green text-xs uppercase tracking-widest mb-3">
+            <GlassCard accentBorder hoverGlow className="p-5">
+              <div className="text-[var(--accent1)] text-xs uppercase tracking-widest mb-3">
                 {'List<T>'} — {t('arrays.list.list_label')}
               </div>
               <AnimatedList
@@ -191,19 +195,19 @@ function ListConcept() {
                   <span key="c" className="text-text-primary text-sm">{t('arrays.list.list_point3')}</span>,
                 ]}
               />
-            </div>
+            </GlassCard>
           </AnimatedText>
         </div>
 
         <AnimatedText delay={0.5}>
-          <div className="bg-bg-secondary border border-border rounded p-4">
+          <GlassCard className="p-4">
             <p className="text-text-secondary text-xs mb-2 uppercase tracking-widest">
               {t('arrays.list.syntax_label')}
             </p>
-            <code className="text-green font-mono">
+            <code className="text-[var(--accent1)] font-mono">
               {'List<string> names = new List<string>();'}
             </code>
-          </div>
+          </GlassCard>
         </AnimatedText>
       </div>
     </SlideLayout>
@@ -238,7 +242,7 @@ function ListExample() {
     <SlideLayout>
       <div className="flex flex-col h-full justify-center gap-6">
         <AnimatedText>
-          <h2 className="text-3xl font-bold text-text-primary">{t('arrays.list.example_title')}</h2>
+          <h2 className="text-3xl font-bold text-text-primary font-display">{t('arrays.list.example_title')}</h2>
         </AnimatedText>
         <AnimatedText delay={0.2}>
           <CodeBlock code={listCode} language="csharp" filename="Lists.cs" />
@@ -256,11 +260,11 @@ function ListMethods() {
     <SlideLayout>
       <div className="flex flex-col h-full justify-center gap-8">
         <AnimatedText>
-          <h2 className="text-3xl font-bold text-text-primary">{t('arrays.methods.title')}</h2>
+          <h2 className="text-3xl font-bold text-text-primary font-display">{t('arrays.methods.title')}</h2>
         </AnimatedText>
 
         <motion.div
-          variants={staggerContainer}
+          variants={playfulStagger}
           initial="hidden"
           animate="visible"
           className="grid grid-cols-2 gap-4"
@@ -275,11 +279,12 @@ function ListMethods() {
           ].map(({ method, desc }) => (
             <motion.div
               key={method}
-              variants={fadeInUp}
-              className="bg-bg-card border border-border rounded-lg p-4 flex gap-4 items-start"
+              variants={springIn}
             >
-              <code className="text-green font-mono text-sm shrink-0 w-36">{method}</code>
-              <span className="text-text-secondary text-sm">{desc}</span>
+              <GlassCard hoverGlow className="p-4 flex gap-4 items-start">
+                <code className="text-[var(--accent1)] font-mono text-sm shrink-0 w-36">{method}</code>
+                <span className="text-text-secondary text-sm">{desc}</span>
+              </GlassCard>
             </motion.div>
           ))}
         </motion.div>
@@ -318,7 +323,7 @@ function LoopsAndArraysExample() {
     <SlideLayout>
       <div className="flex flex-col h-full justify-center gap-6">
         <AnimatedText>
-          <h2 className="text-3xl font-bold text-text-primary">{t('arrays.combined.title')}</h2>
+          <h2 className="text-3xl font-bold text-text-primary font-display">{t('arrays.combined.title')}</h2>
         </AnimatedText>
         <AnimatedText delay={0.15}>
           <p className="text-text-secondary">{t('arrays.combined.desc')}</p>
@@ -327,7 +332,7 @@ function LoopsAndArraysExample() {
           <CodeBlock code={findMaxCode} language="csharp" filename="FindMax.cs" />
         </AnimatedText>
         <AnimatedText delay={0.5}>
-          <p className="text-text-secondary text-sm border-l-2 border-green pl-4">
+          <p className="text-text-secondary text-sm border-l-2 pl-4" style={{ borderColor: 'var(--accent1)' }}>
             {t('arrays.combined.note')}
           </p>
         </AnimatedText>
@@ -341,16 +346,18 @@ function LoopsAndArraysExample() {
 function ArraysTakeaway() {
   const { t } = useLanguage()
   return (
-    <SlideLayout>
+    <SlideLayout showBackground>
       <div className="flex flex-col h-full justify-center gap-8">
         <AnimatedText>
-          <h2 className="text-3xl font-bold text-green">{t('arrays.takeaway.title')}</h2>
+          <GradientText as="h2" className="text-3xl font-bold">
+            {t('arrays.takeaway.title')}
+          </GradientText>
         </AnimatedText>
 
         <div className="grid grid-cols-2 gap-6">
           <AnimatedText delay={0.2}>
-            <div className="bg-bg-card border border-border rounded-lg p-5">
-              <div className="text-green font-bold text-lg mb-3">{t('arrays.takeaway.array_label')}</div>
+            <GlassCard className="p-5">
+              <div className="text-[var(--accent1)] font-bold text-lg mb-3">{t('arrays.takeaway.array_label')}</div>
               <AnimatedList
                 items={[
                   <span key="a" className="text-text-secondary text-sm">{t('arrays.takeaway.array_point1')}</span>,
@@ -358,12 +365,12 @@ function ArraysTakeaway() {
                   <span key="c" className="text-text-secondary text-sm">{t('arrays.takeaway.array_point3')}</span>,
                 ]}
               />
-            </div>
+            </GlassCard>
           </AnimatedText>
 
           <AnimatedText delay={0.35}>
-            <div className="bg-bg-card border border-green/40 rounded-lg p-5">
-              <div className="text-green font-bold text-lg mb-3">{'List<T>'}</div>
+            <GlassCard accentBorder hoverGlow className="p-5">
+              <div className="text-[var(--accent1)] font-bold text-lg mb-3">{'List<T>'}</div>
               <AnimatedList
                 items={[
                   <span key="a" className="text-text-primary text-sm">{t('arrays.takeaway.list_point1')}</span>,
@@ -371,12 +378,12 @@ function ArraysTakeaway() {
                   <span key="c" className="text-text-primary text-sm">{t('arrays.takeaway.list_point3')}</span>,
                 ]}
               />
-            </div>
+            </GlassCard>
           </AnimatedText>
         </div>
 
         <AnimatedText delay={0.55}>
-          <p className="text-xl text-text-primary border-l-4 border-green pl-4">
+          <p className="text-xl text-text-primary border-l-4 pl-4" style={{ borderColor: 'var(--accent1)' }}>
             {t('arrays.takeaway.summary')}
           </p>
         </AnimatedText>

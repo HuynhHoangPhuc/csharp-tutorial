@@ -2,30 +2,32 @@ import { motion } from 'framer-motion'
 import { SlideLayout } from '../components/slide-layout'
 import { AnimatedText, AnimatedList } from '../components/animated-text'
 import { CodeBlock } from '../components/code-block'
+import { GlassCard } from '../components/glass-card'
+import { GradientText } from '../components/gradient-text'
 import { useLanguage } from '../i18n/language-context'
-import { fadeInUp, staggerContainer, scaleIn } from '../lib/animations'
+import { springIn, bounceIn, playfulStagger } from '../lib/animations'
 import { TocSlide } from './toc-slide'
 
 // Slide 1 — Title
 function TitleSlide() {
   const { t } = useLanguage()
   return (
-    <SlideLayout>
+    <SlideLayout showBackground>
       <div className="flex flex-col items-center justify-center h-full text-center gap-6">
-        {/* Decorative terminal prompt */}
+        {/* Chapter label */}
         <motion.div
-          variants={fadeInUp}
+          variants={springIn}
           initial="hidden"
           animate="visible"
-          className="text-green/50 text-sm font-mono tracking-widest uppercase"
+          className="text-[var(--accent1)]/50 text-sm font-display tracking-widest uppercase"
         >
           {t('intro.chapter_label')}
         </motion.div>
 
         <AnimatedText delay={0.1}>
-          <h1 className="text-6xl font-bold text-green leading-tight">
+          <GradientText as="h1" className="text-7xl font-display font-extrabold leading-tight">
             {t('intro.title')}
-          </h1>
+          </GradientText>
         </AnimatedText>
 
         <AnimatedText delay={0.3}>
@@ -34,21 +36,15 @@ function TitleSlide() {
           </p>
         </AnimatedText>
 
-        {/* Blinking cursor */}
+        {/* Gradient divider line replacing blinking cursor */}
         <motion.div
-          variants={fadeInUp}
+          variants={springIn}
           initial="hidden"
           animate="visible"
           transition={{ delay: 0.6 }}
-          className="mt-4 text-green font-mono text-3xl"
-        >
-          <motion.span
-            animate={{ opacity: [1, 0, 1] }}
-            transition={{ duration: 1, repeat: Infinity }}
-          >
-            _
-          </motion.span>
-        </motion.div>
+          className="mt-4 w-32 h-1 rounded-full"
+          style={{ background: 'linear-gradient(90deg, var(--accent1), var(--accent2))' }}
+        />
       </div>
     </SlideLayout>
   )
@@ -57,6 +53,7 @@ function TitleSlide() {
 // Slide 2 — Problem / Motivation
 function ProblemSlide() {
   const { t } = useLanguage()
+  const promptEmojis = ['💡', '🤔', '🎯', '⚡']
   return (
     <SlideLayout>
       <div className="flex flex-col justify-center h-full gap-10">
@@ -67,26 +64,24 @@ function ProblemSlide() {
         </AnimatedText>
 
         <motion.div
-          variants={staggerContainer}
+          variants={playfulStagger}
           initial="hidden"
           animate="visible"
           className="grid grid-cols-2 gap-4"
         >
-          {(['problem_card1', 'problem_card2', 'problem_card3', 'problem_card4'] as const).map((key) => (
-            <motion.div
-              key={key}
-              variants={scaleIn}
-              className="bg-bg-card border border-border rounded-lg p-5 text-text-secondary text-lg"
-            >
-              <span className="text-green mr-2 font-mono">&gt;</span>
-              {t(`intro.${key}`)}
+          {(['problem_card1', 'problem_card2', 'problem_card3', 'problem_card4'] as const).map((key, i) => (
+            <motion.div key={key} variants={bounceIn}>
+              <GlassCard className="p-5 text-text-secondary text-lg">
+                <span className="mr-2">{promptEmojis[i]}</span>
+                {t(`intro.${key}`)}
+              </GlassCard>
             </motion.div>
           ))}
         </motion.div>
 
         <AnimatedText delay={0.5}>
-          <p className="text-xl text-green font-semibold border-l-2 border-green pl-4">
-            {t('intro.problem_answer')}
+          <p className="text-xl font-semibold border-l-2 pl-4" style={{ borderColor: 'var(--accent1)' }}>
+            <GradientText>{t('intro.problem_answer')}</GradientText>
           </p>
         </AnimatedText>
       </div>
@@ -112,29 +107,30 @@ function WhatIsCSharpSlide() {
             <AnimatedList
               itemClassName="flex items-start gap-3 text-text-secondary text-lg"
               items={[
-                <><span className="text-green font-mono shrink-0">01.</span> {t('intro.csharp_fact1')}</>,
-                <><span className="text-green font-mono shrink-0">02.</span> {t('intro.csharp_fact2')}</>,
-                <><span className="text-green font-mono shrink-0">03.</span> {t('intro.csharp_fact3')}</>,
-                <><span className="text-green font-mono shrink-0">04.</span> {t('intro.csharp_fact4')}</>,
+                <><GradientText className="font-bold shrink-0">01.</GradientText> {t('intro.csharp_fact1')}</>,
+                <><GradientText className="font-bold shrink-0">02.</GradientText> {t('intro.csharp_fact2')}</>,
+                <><GradientText className="font-bold shrink-0">03.</GradientText> {t('intro.csharp_fact3')}</>,
+                <><GradientText className="font-bold shrink-0">04.</GradientText> {t('intro.csharp_fact4')}</>,
               ]}
             />
           </div>
 
           {/* Badge panel */}
           <motion.div
-            variants={scaleIn}
+            variants={playfulStagger}
             initial="hidden"
             animate="visible"
             transition={{ delay: 0.4 }}
             className="flex flex-col gap-3 min-w-[200px]"
           >
             {(['Microsoft', '.NET', 'C# 12', 'Open Source'] as const).map((badge) => (
-              <div
+              <motion.div
                 key={badge}
-                className="bg-green/10 border border-green/30 rounded px-4 py-2 text-green font-mono text-sm text-center"
+                variants={bounceIn}
+                className="bg-[var(--accent1)]/15 border border-[var(--accent1)]/30 rounded px-4 py-2 text-[var(--accent1)] text-sm text-center"
               >
                 {badge}
-              </div>
+              </motion.div>
             ))}
           </motion.div>
         </div>
@@ -163,21 +159,19 @@ function WhatCanYouBuildSlide() {
         </AnimatedText>
 
         <motion.div
-          variants={staggerContainer}
+          variants={playfulStagger}
           initial="hidden"
           animate="visible"
           className="grid grid-cols-5 gap-4"
         >
           {buildItems.map(({ icon, key }) => (
-            <motion.div
-              key={key}
-              variants={fadeInUp}
-              className="flex flex-col items-center gap-3 bg-bg-card border border-border rounded-lg p-5 text-center"
-            >
-              <span className="text-4xl">{icon}</span>
-              <span className="text-text-secondary text-sm leading-snug">
-                {t(`intro.${key}`)}
-              </span>
+            <motion.div key={key} variants={springIn}>
+              <GlassCard hoverGlow className="p-5 flex flex-col items-center gap-3 text-center">
+                <span className="text-5xl">{icon}</span>
+                <span className="text-text-secondary text-sm leading-snug font-display font-semibold">
+                  {t(`intro.${key}`)}
+                </span>
+              </GlassCard>
             </motion.div>
           ))}
         </motion.div>
@@ -206,24 +200,24 @@ function WhyCSharpSlide() {
 
         <AnimatedList
           className="grid grid-cols-2 gap-4 !space-y-0"
-          itemClassName="bg-bg-card border border-border rounded-lg p-5"
+          itemClassName=""
           items={[
-            <div key="modern">
-              <div className="text-green font-mono text-sm mb-1">{t('intro.why1_label')}</div>
+            <GlassCard key="modern" accentBorder className="p-5">
+              <div className="text-sm mb-1"><GradientText>{t('intro.why1_label')}</GradientText></div>
               <div className="text-text-secondary">{t('intro.why1_desc')}</div>
-            </div>,
-            <div key="safe">
-              <div className="text-green font-mono text-sm mb-1">{t('intro.why2_label')}</div>
+            </GlassCard>,
+            <GlassCard key="safe" accentBorder className="p-5">
+              <div className="text-sm mb-1"><GradientText>{t('intro.why2_label')}</GradientText></div>
               <div className="text-text-secondary">{t('intro.why2_desc')}</div>
-            </div>,
-            <div key="community">
-              <div className="text-green font-mono text-sm mb-1">{t('intro.why3_label')}</div>
+            </GlassCard>,
+            <GlassCard key="community" accentBorder className="p-5">
+              <div className="text-sm mb-1"><GradientText>{t('intro.why3_label')}</GradientText></div>
               <div className="text-text-secondary">{t('intro.why3_desc')}</div>
-            </div>,
-            <div key="jobs">
-              <div className="text-green font-mono text-sm mb-1">{t('intro.why4_label')}</div>
+            </GlassCard>,
+            <GlassCard key="jobs" accentBorder className="p-5">
+              <div className="text-sm mb-1"><GradientText>{t('intro.why4_label')}</GradientText></div>
               <div className="text-text-secondary">{t('intro.why4_desc')}</div>
-            </div>,
+            </GlassCard>,
           ]}
         />
       </div>
@@ -262,7 +256,7 @@ function HelloWorldSlide() {
         </AnimatedText>
 
         <motion.div
-          variants={scaleIn}
+          variants={bounceIn}
           initial="hidden"
           animate="visible"
           transition={{ delay: 0.3 }}
@@ -275,7 +269,7 @@ function HelloWorldSlide() {
         </motion.div>
 
         <AnimatedText delay={0.5}>
-          <p className="text-green font-mono text-sm border-l-2 border-green/50 pl-4">
+          <p className="text-[var(--accent1)] text-sm border-l-2 border-[var(--accent1)]/50 pl-4">
             {t('intro.hello_world_note')}
           </p>
         </AnimatedText>
@@ -288,25 +282,25 @@ function HelloWorldSlide() {
 function TakeawaySlide() {
   const { t } = useLanguage()
   return (
-    <SlideLayout>
+    <SlideLayout showBackground>
       <div className="flex flex-col items-center justify-center h-full text-center gap-8">
         <motion.div
-          variants={fadeInUp}
+          variants={springIn}
           initial="hidden"
           animate="visible"
-          className="text-green/50 text-sm font-mono tracking-widest uppercase"
+          className="text-[var(--accent1)]/50 text-sm font-display tracking-widest uppercase"
         >
           {t('intro.takeaway_label')}
         </motion.div>
 
         <AnimatedText delay={0.1}>
-          <h2 className="text-5xl font-bold text-green leading-tight max-w-3xl">
+          <GradientText as="h2" className="text-5xl font-display font-bold leading-tight max-w-3xl">
             {t('intro.takeaway_title')}
-          </h2>
+          </GradientText>
         </AnimatedText>
 
         <motion.div
-          variants={staggerContainer}
+          variants={playfulStagger}
           initial="hidden"
           animate="visible"
           className="flex gap-6 mt-4"
@@ -318,8 +312,8 @@ function TakeawaySlide() {
           ] as const).map(({ key }) => (
             <motion.div
               key={key}
-              variants={scaleIn}
-              className="bg-green/10 border border-green/30 rounded-full px-6 py-2 text-green font-mono text-sm"
+              variants={bounceIn}
+              className="bg-[var(--accent1)]/15 border border-[var(--accent1)]/30 rounded-full px-6 py-2 text-[var(--accent1)] text-sm"
             >
               {t(`intro.${key}`)}
             </motion.div>

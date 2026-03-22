@@ -1,10 +1,13 @@
 import { motion } from 'framer-motion'
 import { SlideLayout } from '../components/slide-layout'
 import { AnimatedText } from '../components/animated-text'
+import { GlassCard } from '../components/glass-card'
+import { GradientText } from '../components/gradient-text'
 import { useLanguage } from '../i18n/language-context'
 import { useSlideNavigation } from '../lib/slide-navigation-context'
 import { chapters, getChapterStartIndices } from './index'
-import { staggerContainer, fadeInUp } from '../lib/animations'
+import { playfulStagger, bounceIn } from '../lib/animations'
+import { chapterColors, chapterEmojis } from '../lib/theme'
 
 export function TocSlide() {
   const { t } = useLanguage()
@@ -13,62 +16,87 @@ export function TocSlide() {
 
   return (
     <SlideLayout>
-      <div className="flex flex-col justify-center h-full gap-8">
+      <div className="flex flex-col justify-center h-full gap-6">
         <AnimatedText>
-          <h2 className="text-4xl font-bold text-green font-mono">
+          <GradientText as="h2" className="text-4xl font-display font-bold">
             {t('toc.title')}
-          </h2>
+          </GradientText>
         </AnimatedText>
 
         <motion.div
-          variants={staggerContainer}
+          variants={playfulStagger}
           initial="hidden"
           animate="visible"
-          className="flex flex-col gap-2"
+          className="grid grid-cols-4 gap-4"
         >
           {chapters.map((ch, i) => {
-            // Check if current slide is within this chapter
             const chapterEnd = startIndices[i] + ch.slides.length
             const isActive = current >= startIndices[i] && current < chapterEnd
             const isPast = current >= chapterEnd
+            const colors = chapterColors[i] ?? chapterColors[0]
+            const emoji = chapterEmojis[i] ?? '📖'
 
             return (
-              <motion.button
-                key={ch.id}
-                variants={fadeInUp}
-                onClick={(e) => {
-                  e.stopPropagation()
-                  goToSlide(startIndices[i])
-                }}
-                className={`flex items-center gap-4 px-5 py-3 rounded-lg text-left transition-colors
-                  border font-mono text-base cursor-pointer
-                  ${isActive
-                    ? 'bg-green/15 border-green/40 text-green'
-                    : isPast
-                      ? 'bg-bg-card/50 border-border/50 text-text-secondary'
-                      : 'bg-bg-card border-border text-text-secondary hover:border-green/30 hover:text-text-primary'
-                  }`}
-              >
-                {/* Chapter number */}
-                <span className={`shrink-0 w-8 text-sm ${isActive ? 'text-green' : 'text-text-secondary/60'}`}>
-                  {String(ch.id).padStart(2, '0')}
-                </span>
+              <motion.div key={ch.id} variants={bounceIn}>
+                {/* Outer button handles click; GlassCard provides visual styling */}
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    goToSlide(startIndices[i])
+                  }}
+                  className="w-full text-left"
+                  style={
+                    isActive
+                      ? {
+                          borderRadius: '1rem',
+                          boxShadow: `0 0 16px ${colors.accent1}50`,
+                        }
+                      : undefined
+                  }
+                >
+                  <GlassCard
+                    hoverGlow
+                    accentBorder={isActive}
+                    className={`p-4 ${isPast ? 'opacity-55' : ''}`}
+                  >
+                    {/* Emoji */}
+                    <div className="text-2xl mb-2">{emoji}</div>
 
-                {/* Chapter title */}
-                <span className="flex-1">{t(ch.titleKey)}</span>
+                    {/* Chapter number */}
+                    <span
+                      className="text-2xl font-display font-bold block mb-1"
+                      style={{ color: isActive ? colors.accent1 : undefined }}
+                    >
+                      {String(ch.id).padStart(2, '0')}
+                    </span>
 
-                {/* Status indicator */}
-                <span className="shrink-0 text-sm">
-                  {isActive && <span className="text-green">&larr;</span>}
-                  {isPast && <span className="text-green/50">&check;</span>}
-                </span>
-              </motion.button>
+                    {/* Chapter title */}
+                    <span className="font-display text-sm font-medium text-text-secondary leading-snug block">
+                      {t(ch.titleKey)}
+                    </span>
+
+                    {/* Status indicator */}
+                    {isPast && (
+                      <span className="text-xs mt-2 block" style={{ color: 'var(--accent1)', opacity: 0.6 }}>✓</span>
+                    )}
+                    {isActive && (
+                      <span
+                        className="text-xs mt-2 block font-semibold"
+                        style={{ color: colors.accent1 }}
+                      >
+                        ← here
+                      </span>
+                    )}
+                  </GlassCard>
+                </button>
+              </motion.div>
             )
           })}
         </motion.div>
 
         <AnimatedText delay={0.5}>
-          <p className="text-text-secondary/60 text-sm font-mono text-center">
+          <p className="text-text-secondary/60 text-sm font-body text-center">
             {t('toc.hint')}
           </p>
         </AnimatedText>

@@ -1,30 +1,32 @@
 import { motion } from 'framer-motion'
 import { SlideLayout } from '../components/slide-layout'
-import { AnimatedText, AnimatedList } from '../components/animated-text'
+import { AnimatedText } from '../components/animated-text'
 import { CodeBlock } from '../components/code-block'
 import { OsSwitcher } from '../components/os-switcher'
+import { GlassCard } from '../components/glass-card'
+import { GradientText } from '../components/gradient-text'
 import { useLanguage } from '../i18n/language-context'
-import { fadeInUp, staggerContainer, scaleIn } from '../lib/animations'
+import { springIn, bounceIn, playfulStagger } from '../lib/animations'
 
 // Slide 1 — Section title
 function SetupTitleSlide() {
   const { t } = useLanguage()
   return (
-    <SlideLayout>
+    <SlideLayout showBackground>
       <div className="flex flex-col items-center justify-center h-full text-center gap-6">
         <motion.div
-          variants={fadeInUp}
+          variants={springIn}
           initial="hidden"
           animate="visible"
-          className="text-green/50 text-sm font-mono tracking-widest uppercase"
+          className="text-[var(--accent1)]/50 text-sm font-display tracking-widest uppercase"
         >
           {t('setup.chapter_label')}
         </motion.div>
 
         <AnimatedText delay={0.1}>
-          <h1 className="text-6xl font-bold text-green leading-tight">
+          <GradientText as="h1" className="text-7xl font-display font-extrabold leading-tight">
             {t('setup.title')}
-          </h1>
+          </GradientText>
         </AnimatedText>
 
         <AnimatedText delay={0.3}>
@@ -34,7 +36,7 @@ function SetupTitleSlide() {
         </AnimatedText>
 
         <motion.div
-          variants={staggerContainer}
+          variants={playfulStagger}
           initial="hidden"
           animate="visible"
           className="flex gap-4 mt-4"
@@ -42,8 +44,8 @@ function SetupTitleSlide() {
           {(['.NET SDK', 'VS Code', 'C# Dev Kit'] as const).map((tool) => (
             <motion.div
               key={tool}
-              variants={scaleIn}
-              className="bg-green/10 border border-green/30 rounded px-5 py-2 text-green font-mono text-sm"
+              variants={bounceIn}
+              className="bg-[var(--accent1)]/15 border border-[var(--accent1)]/30 rounded px-5 py-2 text-[var(--accent1)] text-sm"
             >
               {tool}
             </motion.div>
@@ -67,51 +69,54 @@ function PrerequisitesSlide() {
         </AnimatedText>
 
         <motion.div
-          variants={staggerContainer}
+          variants={playfulStagger}
           initial="hidden"
           animate="visible"
           className="flex flex-col gap-4"
         >
           {/* Tool card: .NET SDK */}
-          <motion.div
-            variants={fadeInUp}
-            className="flex items-start gap-5 bg-bg-card border border-border rounded-lg p-5"
-          >
-            <div className="bg-green/10 border border-green/30 rounded px-3 py-1 text-green font-mono text-xs shrink-0 mt-1">
-              01
-            </div>
-            <div>
-              <div className="text-text-primary font-semibold text-lg">{t('setup.tool1_name')}</div>
-              <div className="text-text-secondary mt-1">{t('setup.tool1_desc')}</div>
-            </div>
+          <motion.div variants={springIn}>
+            <GlassCard accentBorder className="p-5">
+              <div className="flex items-start gap-5">
+                <div className="bg-[var(--accent1)]/15 border border-[var(--accent1)]/30 rounded px-3 py-1 text-[var(--accent1)] text-xs shrink-0 mt-1">
+                  01
+                </div>
+                <div>
+                  <div className="text-text-primary font-semibold text-lg">{t('setup.tool1_name')}</div>
+                  <div className="text-text-secondary mt-1">{t('setup.tool1_desc')}</div>
+                </div>
+              </div>
+            </GlassCard>
           </motion.div>
 
           {/* Tool card: VS Code */}
-          <motion.div
-            variants={fadeInUp}
-            className="flex items-start gap-5 bg-bg-card border border-border rounded-lg p-5"
-          >
-            <div className="bg-green/10 border border-green/30 rounded px-3 py-1 text-green font-mono text-xs shrink-0 mt-1">
-              02
-            </div>
-            <div>
-              <div className="text-text-primary font-semibold text-lg">{t('setup.tool2_name')}</div>
-              <div className="text-text-secondary mt-1">{t('setup.tool2_desc')}</div>
-            </div>
+          <motion.div variants={springIn}>
+            <GlassCard accentBorder className="p-5">
+              <div className="flex items-start gap-5">
+                <div className="bg-[var(--accent1)]/15 border border-[var(--accent1)]/30 rounded px-3 py-1 text-[var(--accent1)] text-xs shrink-0 mt-1">
+                  02
+                </div>
+                <div>
+                  <div className="text-text-primary font-semibold text-lg">{t('setup.tool2_name')}</div>
+                  <div className="text-text-secondary mt-1">{t('setup.tool2_desc')}</div>
+                </div>
+              </div>
+            </GlassCard>
           </motion.div>
 
           {/* Tool card: C# Dev Kit */}
-          <motion.div
-            variants={fadeInUp}
-            className="flex items-start gap-5 bg-bg-card border border-border rounded-lg p-5"
-          >
-            <div className="bg-green/10 border border-green/30 rounded px-3 py-1 text-green font-mono text-xs shrink-0 mt-1">
-              03
-            </div>
-            <div>
-              <div className="text-text-primary font-semibold text-lg">{t('setup.tool3_name')}</div>
-              <div className="text-text-secondary mt-1">{t('setup.tool3_desc')}</div>
-            </div>
+          <motion.div variants={springIn}>
+            <GlassCard accentBorder className="p-5">
+              <div className="flex items-start gap-5">
+                <div className="bg-[var(--accent1)]/15 border border-[var(--accent1)]/30 rounded px-3 py-1 text-[var(--accent1)] text-xs shrink-0 mt-1">
+                  03
+                </div>
+                <div>
+                  <div className="text-text-primary font-semibold text-lg">{t('setup.tool3_name')}</div>
+                  <div className="text-text-secondary mt-1">{t('setup.tool3_desc')}</div>
+                </div>
+              </div>
+            </GlassCard>
           </motion.div>
         </motion.div>
       </div>
@@ -127,7 +132,7 @@ function InstallSdkSlide() {
       <div className="flex flex-col justify-center h-full gap-7">
         <AnimatedText>
           <div className="flex items-center gap-3">
-            <span className="bg-green/10 border border-green/30 rounded px-3 py-1 text-green font-mono text-sm">
+            <span className="bg-[var(--accent1)]/15 border border-[var(--accent1)]/30 rounded px-3 py-1 text-[var(--accent1)] text-sm">
               {t('setup.step_label')} 1
             </span>
             <h2 className="text-4xl font-bold text-text-primary">
@@ -143,7 +148,7 @@ function InstallSdkSlide() {
         </AnimatedText>
 
         <motion.div
-          variants={scaleIn}
+          variants={bounceIn}
           initial="hidden"
           animate="visible"
           transition={{ delay: 0.3 }}
@@ -160,7 +165,7 @@ function InstallSdkSlide() {
         <AnimatedText delay={0.5}>
           <p className="text-text-secondary text-sm">
             {t('setup.install_sdk_note')}{' '}
-            <span className="text-green font-mono">dotnet.microsoft.com</span>
+            <span className="text-[var(--accent1)]">dotnet.microsoft.com</span>
           </p>
         </AnimatedText>
       </div>
@@ -176,7 +181,7 @@ function VerifyInstallSlide() {
       <div className="flex flex-col justify-center h-full gap-7">
         <AnimatedText>
           <div className="flex items-center gap-3">
-            <span className="bg-green/10 border border-green/30 rounded px-3 py-1 text-green font-mono text-sm">
+            <span className="bg-[var(--accent1)]/15 border border-[var(--accent1)]/30 rounded px-3 py-1 text-[var(--accent1)] text-sm">
               {t('setup.step_label')} 2
             </span>
             <h2 className="text-4xl font-bold text-text-primary">
@@ -192,7 +197,7 @@ function VerifyInstallSlide() {
         </AnimatedText>
 
         <motion.div
-          variants={scaleIn}
+          variants={bounceIn}
           initial="hidden"
           animate="visible"
           transition={{ delay: 0.3 }}
@@ -207,10 +212,10 @@ function VerifyInstallSlide() {
         </motion.div>
 
         <AnimatedText delay={0.5}>
-          <div className="bg-bg-card border border-green/20 rounded-lg p-4">
-            <div className="text-green/60 font-mono text-xs mb-2">{t('setup.verify_output_label')}</div>
-            <div className="text-green font-mono text-lg">8.0.xxx</div>
-          </div>
+          <GlassCard className="p-4">
+            <div className="text-[var(--accent1)]/60 text-xs mb-2">{t('setup.verify_output_label')}</div>
+            <div className="text-[var(--accent1)] text-lg">8.0.xxx</div>
+          </GlassCard>
         </AnimatedText>
       </div>
     </SlideLayout>
@@ -225,7 +230,7 @@ function InstallVsCodeSlide() {
       <div className="flex flex-col justify-center h-full gap-7">
         <AnimatedText>
           <div className="flex items-center gap-3">
-            <span className="bg-green/10 border border-green/30 rounded px-3 py-1 text-green font-mono text-sm">
+            <span className="bg-[var(--accent1)]/15 border border-[var(--accent1)]/30 rounded px-3 py-1 text-[var(--accent1)] text-sm">
               {t('setup.step_label')} 3
             </span>
             <h2 className="text-4xl font-bold text-text-primary">
@@ -235,59 +240,62 @@ function InstallVsCodeSlide() {
         </AnimatedText>
 
         <motion.div
-          variants={staggerContainer}
+          variants={playfulStagger}
           initial="hidden"
           animate="visible"
           className="flex flex-col gap-4"
         >
-          <motion.div
-            variants={fadeInUp}
-            className="flex items-start gap-4 bg-bg-card border border-border rounded-lg p-5"
-          >
-            <span className="text-green font-mono text-lg shrink-0">1.</span>
-            <div>
-              <div className="text-text-primary font-semibold">{t('setup.vscode_step1_title')}</div>
-              <div className="text-text-secondary text-sm mt-1">
-                {t('setup.vscode_step1_desc')}{' '}
-                <span className="text-green font-mono">code.visualstudio.com</span>
+          <motion.div variants={springIn}>
+            <GlassCard className="p-5">
+              <div className="flex items-start gap-4">
+                <span className="text-[var(--accent1)] text-lg shrink-0">1.</span>
+                <div>
+                  <div className="text-text-primary font-semibold">{t('setup.vscode_step1_title')}</div>
+                  <div className="text-text-secondary text-sm mt-1">
+                    {t('setup.vscode_step1_desc')}{' '}
+                    <span className="text-[var(--accent1)]">code.visualstudio.com</span>
+                  </div>
+                </div>
               </div>
-            </div>
+            </GlassCard>
           </motion.div>
 
-          <motion.div
-            variants={fadeInUp}
-            className="flex items-start gap-4 bg-bg-card border border-border rounded-lg p-5"
-          >
-            <span className="text-green font-mono text-lg shrink-0">2.</span>
-            <div>
-              <div className="text-text-primary font-semibold">{t('setup.vscode_step2_title')}</div>
-              <div className="text-text-secondary text-sm mt-1">
-                {t('setup.vscode_step2_desc')}
+          <motion.div variants={springIn}>
+            <GlassCard className="p-5">
+              <div className="flex items-start gap-4">
+                <span className="text-[var(--accent1)] text-lg shrink-0">2.</span>
+                <div>
+                  <div className="text-text-primary font-semibold">{t('setup.vscode_step2_title')}</div>
+                  <div className="text-text-secondary text-sm mt-1">
+                    {t('setup.vscode_step2_desc')}
+                  </div>
+                  <div className="mt-2 flex gap-2 flex-wrap">
+                    {(['C# Dev Kit', 'IntelliCode for C# Dev Kit'] as const).map((ext) => (
+                      <span
+                        key={ext}
+                        className="bg-[var(--accent1)]/15 border border-[var(--accent1)]/30 rounded px-3 py-1 text-[var(--accent1)] text-xs"
+                      >
+                        {ext}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
-              <div className="mt-2 flex gap-2 flex-wrap">
-                {(['C# Dev Kit', 'IntelliCode for C# Dev Kit'] as const).map((ext) => (
-                  <span
-                    key={ext}
-                    className="bg-green/10 border border-green/30 rounded px-3 py-1 text-green font-mono text-xs"
-                  >
-                    {ext}
-                  </span>
-                ))}
-              </div>
-            </div>
+            </GlassCard>
           </motion.div>
 
-          <motion.div
-            variants={fadeInUp}
-            className="flex items-start gap-4 bg-bg-card border border-border rounded-lg p-5"
-          >
-            <span className="text-green font-mono text-lg shrink-0">3.</span>
-            <div>
-              <div className="text-text-primary font-semibold">{t('setup.vscode_step3_title')}</div>
-              <div className="text-text-secondary text-sm mt-1">
-                {t('setup.vscode_step3_desc')}
+          <motion.div variants={springIn}>
+            <GlassCard className="p-5">
+              <div className="flex items-start gap-4">
+                <span className="text-[var(--accent1)] text-lg shrink-0">3.</span>
+                <div>
+                  <div className="text-text-primary font-semibold">{t('setup.vscode_step3_title')}</div>
+                  <div className="text-text-secondary text-sm mt-1">
+                    {t('setup.vscode_step3_desc')}
+                  </div>
+                </div>
               </div>
-            </div>
+            </GlassCard>
           </motion.div>
         </motion.div>
       </div>
@@ -303,7 +311,7 @@ function CreateProjectSlide() {
       <div className="flex flex-col justify-center h-full gap-7">
         <AnimatedText>
           <div className="flex items-center gap-3">
-            <span className="bg-green/10 border border-green/30 rounded px-3 py-1 text-green font-mono text-sm">
+            <span className="bg-[var(--accent1)]/15 border border-[var(--accent1)]/30 rounded px-3 py-1 text-[var(--accent1)] text-sm">
               {t('setup.step_label')} 4
             </span>
             <h2 className="text-4xl font-bold text-text-primary">
@@ -319,7 +327,7 @@ function CreateProjectSlide() {
         </AnimatedText>
 
         <motion.div
-          variants={scaleIn}
+          variants={bounceIn}
           initial="hidden"
           animate="visible"
           transition={{ delay: 0.3 }}
@@ -334,10 +342,10 @@ function CreateProjectSlide() {
         </motion.div>
 
         <AnimatedText delay={0.5}>
-          <div className="bg-bg-card border border-green/20 rounded-lg p-4">
-            <div className="text-green/60 font-mono text-xs mb-2">{t('setup.create_project_output_label')}</div>
-            <div className="text-green font-mono">Hello, World!</div>
-          </div>
+          <GlassCard className="p-4">
+            <div className="text-[var(--accent1)]/60 text-xs mb-2">{t('setup.create_project_output_label')}</div>
+            <div className="text-[var(--accent1)]">Hello, World!</div>
+          </GlassCard>
         </AnimatedText>
       </div>
     </SlideLayout>
@@ -360,7 +368,7 @@ function ProjectStructureSlide() {
       <div className="flex flex-col justify-center h-full gap-6">
         <AnimatedText>
           <div className="flex items-center gap-3">
-            <span className="bg-green/10 border border-green/30 rounded px-3 py-1 text-green font-mono text-sm">
+            <span className="bg-[var(--accent1)]/15 border border-[var(--accent1)]/30 rounded px-3 py-1 text-[var(--accent1)] text-sm">
               {t('setup.step_label')} 5
             </span>
             <h2 className="text-4xl font-bold text-text-primary">
@@ -372,13 +380,13 @@ function ProjectStructureSlide() {
         <div className="grid grid-cols-2 gap-6">
           {/* File tree */}
           <motion.div
-            variants={fadeInUp}
+            variants={springIn}
             initial="hidden"
             animate="visible"
             transition={{ delay: 0.2 }}
             className="flex flex-col gap-3"
           >
-            <div className="text-text-secondary text-sm font-mono mb-1">
+            <div className="text-text-secondary text-sm mb-1">
               {t('setup.structure_tree_label')}
             </div>
             <CodeBlock code={PROJECT_STRUCTURE} language="bash" />
@@ -386,13 +394,13 @@ function ProjectStructureSlide() {
 
           {/* Program.cs content */}
           <motion.div
-            variants={fadeInUp}
+            variants={springIn}
             initial="hidden"
             animate="visible"
             transition={{ delay: 0.35 }}
             className="flex flex-col gap-3"
           >
-            <div className="text-text-secondary text-sm font-mono mb-1">
+            <div className="text-text-secondary text-sm mb-1">
               {t('setup.structure_code_label')}
             </div>
             <CodeBlock code={PROGRAM_CS_CODE} language="csharp" filename="Program.cs" />
@@ -400,7 +408,7 @@ function ProjectStructureSlide() {
         </div>
 
         <AnimatedText delay={0.5}>
-          <p className="text-green font-mono text-sm border-l-2 border-green/50 pl-4">
+          <p className="text-[var(--accent1)] text-sm border-l-2 border-[var(--accent1)]/50 pl-4">
             {t('setup.structure_note')}
           </p>
         </AnimatedText>
@@ -413,25 +421,25 @@ function ProjectStructureSlide() {
 function SetupTakeawaySlide() {
   const { t } = useLanguage()
   return (
-    <SlideLayout>
+    <SlideLayout showBackground>
       <div className="flex flex-col items-center justify-center h-full text-center gap-8">
         <motion.div
-          variants={fadeInUp}
+          variants={springIn}
           initial="hidden"
           animate="visible"
-          className="text-green/50 text-sm font-mono tracking-widest uppercase"
+          className="text-[var(--accent1)]/50 text-sm font-display tracking-widest uppercase"
         >
           {t('setup.takeaway_label')}
         </motion.div>
 
         <AnimatedText delay={0.1}>
-          <h2 className="text-5xl font-bold text-green leading-tight max-w-3xl">
+          <GradientText as="h2" className="text-5xl font-display font-bold leading-tight max-w-3xl">
             {t('setup.takeaway_title')}
-          </h2>
+          </GradientText>
         </AnimatedText>
 
         <motion.div
-          variants={staggerContainer}
+          variants={playfulStagger}
           initial="hidden"
           animate="visible"
           className="flex flex-col gap-3 w-full max-w-lg mt-2"
@@ -439,10 +447,10 @@ function SetupTakeawaySlide() {
           {(['takeaway_point1', 'takeaway_point2', 'takeaway_point3'] as const).map((key) => (
             <motion.div
               key={key}
-              variants={fadeInUp}
+              variants={springIn}
               className="flex items-center gap-3 text-text-secondary text-lg"
             >
-              <span className="text-green font-mono shrink-0">✓</span>
+              <span className="text-[var(--accent1)] shrink-0">✓</span>
               {t(`setup.${key}`)}
             </motion.div>
           ))}

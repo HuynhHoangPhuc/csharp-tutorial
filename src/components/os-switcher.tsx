@@ -44,9 +44,9 @@ export function OsSwitcher({ commands, language = 'bash' }: OsSwitcherProps) {
             <button
               key={os}
               onClick={() => setActiveOs(os)}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded text-xs transition-colors cursor-pointer ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs transition-colors cursor-pointer backdrop-blur-sm font-display font-semibold ${
                 isActive
-                  ? 'bg-green/20 text-green border border-green/30'
+                  ? 'bg-[var(--accent1)]/15 text-[var(--accent1)] border border-[var(--accent1)]/30'
                   : 'text-text-secondary hover:text-text-primary border border-transparent'
               }`}
             >

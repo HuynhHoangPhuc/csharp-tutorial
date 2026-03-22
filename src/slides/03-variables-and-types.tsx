@@ -2,25 +2,27 @@ import { motion } from 'framer-motion'
 import { SlideLayout } from '../components/slide-layout'
 import { AnimatedText, AnimatedList } from '../components/animated-text'
 import { CodeBlock } from '../components/code-block'
+import { GlassCard } from '../components/glass-card'
+import { GradientText } from '../components/gradient-text'
 import { useLanguage } from '../i18n/language-context'
-import { fadeInUp, fadeIn, staggerContainer, scaleIn } from '../lib/animations'
+import { fadeIn, springIn, bounceIn, playfulStagger } from '../lib/animations'
 
 // ─── Slide 1: Section Title ───────────────────────────────────────────────────
 
 function Ch3SectionTitle() {
   const { t } = useLanguage()
   return (
-    <SlideLayout>
+    <SlideLayout showBackground>
       <div className="flex flex-col items-center justify-center h-full gap-6">
         <AnimatedText>
-          <p className="text-green text-lg tracking-widest uppercase">
+          <p className="text-[var(--accent1)] text-lg font-display tracking-widest uppercase">
             {t('variables.chapter_label')}
           </p>
         </AnimatedText>
         <AnimatedText delay={0.1}>
-          <h1 className="text-6xl font-bold text-text-primary text-center leading-tight">
+          <GradientText as="h1" className="text-7xl font-display font-extrabold text-center leading-tight">
             {t('variables.title')}
-          </h1>
+          </GradientText>
         </AnimatedText>
         <AnimatedText delay={0.25}>
           <p className="text-text-secondary text-xl">{t('variables.subtitle')}</p>
@@ -41,11 +43,11 @@ function Ch3Problem() {
           <h2 className="text-4xl font-bold text-text-primary">{t('variables.problem_title')}</h2>
         </AnimatedText>
         <AnimatedText delay={0.15}>
-          <div className="bg-bg-card border border-border rounded-xl p-8">
-            <p className="text-2xl text-green font-semibold leading-relaxed">
-              {t('variables.problem_question')}
+          <GlassCard accentBorder className="p-8">
+            <p className="text-2xl font-semibold leading-relaxed">
+              <GradientText>{t('variables.problem_question')}</GradientText>
             </p>
-          </div>
+          </GlassCard>
         </AnimatedText>
         <AnimatedList
           items={[
@@ -72,46 +74,43 @@ function Ch3WhatIsVariable() {
 
         {/* Box metaphor */}
         <motion.div
-          variants={staggerContainer}
+          variants={playfulStagger}
           initial="hidden"
           animate="visible"
           className="flex items-stretch gap-6"
         >
           {/* Name */}
-          <motion.div
-            variants={scaleIn}
-            className="flex-1 flex flex-col items-center gap-3 bg-bg-card border border-green/40 rounded-xl p-6"
-          >
-            <span className="text-green text-3xl font-bold">age</span>
-            <span className="text-xs text-text-secondary uppercase tracking-widest">
-              {t('variables.box_name')}
-            </span>
+          <motion.div variants={bounceIn}>
+            <GlassCard accentBorder className="flex-1 flex flex-col items-center gap-3 p-6">
+              <GradientText className="text-3xl font-bold">age</GradientText>
+              <span className="text-xs text-text-secondary uppercase tracking-widest">
+                {t('variables.box_name')}
+              </span>
+            </GlassCard>
           </motion.div>
 
           <div className="flex items-center text-text-secondary text-2xl">:</div>
 
           {/* Type */}
-          <motion.div
-            variants={scaleIn}
-            className="flex-1 flex flex-col items-center gap-3 bg-bg-card border border-border rounded-xl p-6"
-          >
-            <span className="text-text-primary text-3xl font-bold">int</span>
-            <span className="text-xs text-text-secondary uppercase tracking-widest">
-              {t('variables.box_type')}
-            </span>
+          <motion.div variants={bounceIn}>
+            <GlassCard className="flex-1 flex flex-col items-center gap-3 p-6">
+              <span className="text-text-primary text-3xl font-bold">int</span>
+              <span className="text-xs text-text-secondary uppercase tracking-widest">
+                {t('variables.box_type')}
+              </span>
+            </GlassCard>
           </motion.div>
 
           <div className="flex items-center text-text-secondary text-2xl">=</div>
 
           {/* Value */}
-          <motion.div
-            variants={scaleIn}
-            className="flex-1 flex flex-col items-center gap-3 bg-bg-card border border-border rounded-xl p-6"
-          >
-            <span className="text-text-primary text-3xl font-bold">25</span>
-            <span className="text-xs text-text-secondary uppercase tracking-widest">
-              {t('variables.box_value')}
-            </span>
+          <motion.div variants={bounceIn}>
+            <GlassCard className="flex-1 flex flex-col items-center gap-3 p-6">
+              <span className="text-text-primary text-3xl font-bold">25</span>
+              <span className="text-xs text-text-secondary uppercase tracking-widest">
+                {t('variables.box_value')}
+              </span>
+            </GlassCard>
           </motion.div>
         </motion.div>
 
@@ -144,7 +143,7 @@ function Ch3CommonTypes() {
         </AnimatedText>
 
         <motion.div
-          variants={staggerContainer}
+          variants={playfulStagger}
           initial="hidden"
           animate="visible"
           className="flex flex-col gap-3"
@@ -166,14 +165,12 @@ function Ch3CommonTypes() {
           </motion.div>
 
           {types.map(({ type, example, desc }) => (
-            <motion.div
-              key={type}
-              variants={fadeInUp}
-              className="grid grid-cols-3 gap-4 bg-bg-card border border-border rounded-lg px-4 py-3 items-center"
-            >
-              <span className="text-green font-bold text-lg">{type}</span>
-              <span className="text-text-primary font-mono">{example}</span>
-              <span className="text-text-secondary text-sm">{desc}</span>
+            <motion.div key={type} variants={springIn}>
+              <GlassCard className="grid grid-cols-3 gap-4 px-4 py-3 items-center">
+                <GradientText className="font-bold text-lg">{type}</GradientText>
+                <span className="text-text-primary font-mono">{example}</span>
+                <span className="text-text-secondary text-sm">{desc}</span>
+              </GlassCard>
             </motion.div>
           ))}
         </motion.div>
@@ -237,19 +234,19 @@ function Ch3TypeConversionConcept() {
         <AnimatedList
           items={[
             <span key="implicit" className="text-lg">
-              <span className="text-green font-bold">{t('variables.conv_implicit_label')}</span>
+              <GradientText className="font-bold">{t('variables.conv_implicit_label')}</GradientText>
               <span className="text-text-secondary"> — {t('variables.conv_implicit_desc')}</span>
             </span>,
             <span key="explicit" className="text-lg">
-              <span className="text-green font-bold">{t('variables.conv_explicit_label')}</span>
+              <GradientText className="font-bold">{t('variables.conv_explicit_label')}</GradientText>
               <span className="text-text-secondary"> — {t('variables.conv_explicit_desc')}</span>
             </span>,
             <span key="convert" className="text-lg">
-              <span className="text-green font-bold">Convert.ToInt32()</span>
+              <GradientText className="font-bold">Convert.ToInt32()</GradientText>
               <span className="text-text-secondary"> — {t('variables.conv_convert_desc')}</span>
             </span>,
             <span key="parse" className="text-lg">
-              <span className="text-green font-bold">int.Parse()</span>
+              <GradientText className="font-bold">int.Parse()</GradientText>
               <span className="text-text-secondary"> — {t('variables.conv_parse_desc')}</span>
             </span>,
           ]}
@@ -317,24 +314,24 @@ function Ch3ConstantsAndInterpolation() {
 
         {/* const block */}
         <AnimatedText delay={0.1}>
-          <div className="bg-bg-card border border-border rounded-xl p-6 space-y-2">
-            <p className="text-green text-sm uppercase tracking-widest font-bold mb-3">
-              const
+          <GlassCard className="p-6 space-y-2">
+            <p className="text-sm uppercase tracking-widest font-bold mb-3">
+              <GradientText>const</GradientText>
             </p>
             <p className="text-text-primary text-base">{t('variables.const_desc')}</p>
             <p className="text-text-secondary text-sm">{t('variables.const_example_note')}</p>
-          </div>
+          </GlassCard>
         </AnimatedText>
 
         {/* interpolation block */}
         <AnimatedText delay={0.25}>
-          <div className="bg-bg-card border border-green/30 rounded-xl p-6 space-y-2">
-            <p className="text-green text-sm uppercase tracking-widest font-bold mb-3">
-              {t('variables.interp_label')}
+          <GlassCard accentBorder className="p-6 space-y-2">
+            <p className="text-sm uppercase tracking-widest font-bold mb-3">
+              <GradientText>{t('variables.interp_label')}</GradientText>
             </p>
             <p className="text-text-primary text-base">{t('variables.interp_desc')}</p>
-            <code className="text-green text-sm">{`$"Hello, {name}! You are {age} years old."`}</code>
-          </div>
+            <code className="text-[var(--accent1)] text-sm">{`$"Hello, {name}! You are {age} years old."`}</code>
+          </GlassCard>
         </AnimatedText>
       </div>
     </SlideLayout>
@@ -386,16 +383,16 @@ function Ch3ConstExample() {
 function Ch3Takeaway() {
   const { t } = useLanguage()
   return (
-    <SlideLayout>
+    <SlideLayout showBackground>
       <div className="flex flex-col items-center justify-center h-full gap-10">
         <AnimatedText>
-          <h2 className="text-5xl font-bold text-text-primary text-center">
+          <GradientText as="h2" className="text-5xl font-display font-bold text-center">
             {t('variables.takeaway_title')}
-          </h2>
+          </GradientText>
         </AnimatedText>
 
         <motion.div
-          variants={staggerContainer}
+          variants={playfulStagger}
           initial="hidden"
           animate="visible"
           className="grid grid-cols-2 gap-4 w-full max-w-3xl"
@@ -406,20 +403,18 @@ function Ch3Takeaway() {
             { icon: '🔒', label: t('variables.takeaway_const') },
             { icon: '✨', label: t('variables.takeaway_interp') },
           ].map(({ icon, label }) => (
-            <motion.div
-              key={label}
-              variants={fadeInUp}
-              className="flex items-center gap-4 bg-bg-card border border-border rounded-xl p-5"
-            >
-              <span className="text-3xl">{icon}</span>
-              <span className="text-text-primary text-base leading-snug">{label}</span>
+            <motion.div key={label} variants={bounceIn}>
+              <GlassCard hoverGlow className="flex items-center gap-4 p-5">
+                <span className="text-3xl">{icon}</span>
+                <span className="text-text-primary text-base leading-snug">{label}</span>
+              </GlassCard>
             </motion.div>
           ))}
         </motion.div>
 
         <AnimatedText delay={0.5}>
-          <p className="text-green text-xl font-semibold text-center">
-            {t('variables.takeaway_cta')}
+          <p className="text-xl font-semibold text-center">
+            <GradientText>{t('variables.takeaway_cta')}</GradientText>
           </p>
         </AnimatedText>
       </div>

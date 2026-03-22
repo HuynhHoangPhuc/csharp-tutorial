@@ -1,30 +1,34 @@
 import { SlideLayout } from '../components/slide-layout'
 import { AnimatedText, AnimatedList } from '../components/animated-text'
 import { CodeBlock } from '../components/code-block'
+import { GlassCard } from '../components/glass-card'
+import { GradientText } from '../components/gradient-text'
 import { useLanguage } from '../i18n/language-context'
 import { motion } from 'framer-motion'
-import { fadeInUp, staggerContainer } from '../lib/animations'
+import { springIn, bounceIn, playfulStagger } from '../lib/animations'
 
 // ─── Slide 1: Section Title ───────────────────────────────────────────────────
 
 function LoopsSectionTitle() {
   const { t } = useLanguage()
   return (
-    <SlideLayout>
+    <SlideLayout showBackground>
       <div className="flex flex-col items-center justify-center h-full gap-6">
         <AnimatedText>
-          <div className="text-green text-lg font-semibold tracking-widest uppercase">
+          <div className="text-[var(--accent1)] text-lg font-semibold tracking-widest uppercase">
             {t('loops.chapter')}
           </div>
         </AnimatedText>
         <AnimatedText delay={0.15}>
-          <h1 className="text-6xl font-bold text-text-primary">{t('loops.title')}</h1>
+          <GradientText as="h1" className="text-6xl font-display font-extrabold">
+            {t('loops.title')}
+          </GradientText>
         </AnimatedText>
         <AnimatedText delay={0.3}>
           <p className="text-xl text-text-secondary">{t('loops.subtitle')}</p>
         </AnimatedText>
         <AnimatedText delay={0.5}>
-          <div className="mt-4 text-green font-mono text-2xl tracking-wider">
+          <div className="mt-4 text-[var(--accent1)] font-display text-2xl tracking-wider">
             {'for  while  do-while  foreach'}
           </div>
         </AnimatedText>
@@ -41,10 +45,12 @@ function LoopsProblem() {
     <SlideLayout>
       <div className="flex flex-col h-full justify-center gap-8">
         <AnimatedText>
-          <h2 className="text-3xl font-bold text-green">{t('loops.problem.title')}</h2>
+          <GradientText as="h2" className="text-3xl font-bold">
+            {t('loops.problem.title')}
+          </GradientText>
         </AnimatedText>
         <AnimatedText delay={0.2}>
-          <div className="bg-bg-card border border-border rounded-lg p-6">
+          <GlassCard className="p-6">
             <p className="text-text-secondary text-sm mb-4 uppercase tracking-widest">
               {t('loops.problem.without_loops')}
             </p>
@@ -54,13 +60,13 @@ Console.WriteLine(2);
 Console.WriteLine(3);
 // ... 97 more lines`}
             </pre>
-          </div>
+          </GlassCard>
         </AnimatedText>
         <AnimatedText delay={0.4}>
           <p className="text-xl text-text-primary">{t('loops.problem.question')}</p>
         </AnimatedText>
         <AnimatedText delay={0.55}>
-          <p className="text-green text-lg">{t('loops.problem.answer')}</p>
+          <p className="text-[var(--accent1)] text-lg">{t('loops.problem.answer')}</p>
         </AnimatedText>
       </div>
     </SlideLayout>
@@ -75,24 +81,24 @@ function ForLoopConcept() {
     <SlideLayout>
       <div className="flex flex-col h-full justify-center gap-8">
         <AnimatedText>
-          <h2 className="text-3xl font-bold text-text-primary">
+          <h2 className="text-3xl font-bold text-text-primary font-display">
             {t('loops.for.title')}
           </h2>
         </AnimatedText>
 
         <AnimatedText delay={0.2}>
-          <div className="bg-bg-card border border-border rounded-lg p-5">
+          <GlassCard className="p-5">
             <p className="text-text-secondary text-xs mb-3 uppercase tracking-widest">
               {t('loops.for.syntax_label')}
             </p>
-            <pre className="text-green font-mono text-lg">
+            <pre className="text-[var(--accent1)] font-mono text-lg">
               {'for (initializer; condition; increment) { }'}
             </pre>
-          </div>
+          </GlassCard>
         </AnimatedText>
 
         <motion.div
-          variants={staggerContainer}
+          variants={playfulStagger}
           initial="hidden"
           animate="visible"
           className="grid grid-cols-3 gap-4"
@@ -104,12 +110,13 @@ function ForLoopConcept() {
           ].map(({ label, desc, example }) => (
             <motion.div
               key={label}
-              variants={fadeInUp}
-              className="bg-bg-secondary border border-border rounded-lg p-4"
+              variants={springIn}
             >
-              <div className="text-green font-bold mb-1">{label}</div>
-              <div className="text-text-secondary text-sm mb-2">{desc}</div>
-              <code className="text-text-primary text-sm">{example}</code>
+              <GlassCard hoverGlow className="p-4">
+                <div className="text-[var(--accent1)] font-bold mb-1">{label}</div>
+                <div className="text-text-secondary text-sm mb-2">{desc}</div>
+                <code className="text-text-primary text-sm">{example}</code>
+              </GlassCard>
             </motion.div>
           ))}
         </motion.div>
@@ -141,7 +148,7 @@ function ForLoopExample() {
     <SlideLayout>
       <div className="flex flex-col h-full justify-center gap-6">
         <AnimatedText>
-          <h2 className="text-3xl font-bold text-text-primary">{t('loops.for.example_title')}</h2>
+          <h2 className="text-3xl font-bold text-text-primary font-display">{t('loops.for.example_title')}</h2>
         </AnimatedText>
         <AnimatedText delay={0.2}>
           <CodeBlock code={forLoopCode} language="csharp" filename="ForLoop.cs" />
@@ -162,13 +169,13 @@ function WhileLoopConcept() {
     <SlideLayout>
       <div className="flex flex-col h-full justify-center gap-8">
         <AnimatedText>
-          <h2 className="text-3xl font-bold text-text-primary">{t('loops.while.title')}</h2>
+          <h2 className="text-3xl font-bold text-text-primary font-display">{t('loops.while.title')}</h2>
         </AnimatedText>
 
         <div className="grid grid-cols-2 gap-6">
           <AnimatedText delay={0.2}>
-            <div className="bg-bg-card border border-border rounded-lg p-5 h-full">
-              <div className="text-green font-bold text-lg mb-2">while</div>
+            <GlassCard className="p-5 h-full">
+              <div className="text-[var(--accent1)] font-bold text-lg mb-2">while</div>
               <pre className="text-text-secondary text-sm font-mono mb-3">
                 {'while (condition) { }'}
               </pre>
@@ -178,12 +185,12 @@ function WhileLoopConcept() {
                   <span key="b" className="text-text-secondary text-sm">{t('loops.while.while_point2')}</span>,
                 ]}
               />
-            </div>
+            </GlassCard>
           </AnimatedText>
 
           <AnimatedText delay={0.35}>
-            <div className="bg-bg-card border border-border rounded-lg p-5 h-full">
-              <div className="text-green font-bold text-lg mb-2">do-while</div>
+            <GlassCard accentBorder className="p-5 h-full">
+              <div className="text-[var(--accent1)] font-bold text-lg mb-2">do-while</div>
               <pre className="text-text-secondary text-sm font-mono mb-3">
                 {'do { } while (condition);'}
               </pre>
@@ -193,12 +200,12 @@ function WhileLoopConcept() {
                   <span key="b" className="text-text-secondary text-sm">{t('loops.while.dowhile_point2')}</span>,
                 ]}
               />
-            </div>
+            </GlassCard>
           </AnimatedText>
         </div>
 
         <AnimatedText delay={0.5}>
-          <p className="text-text-secondary text-sm border-l-2 border-green pl-4">
+          <p className="text-text-secondary text-sm border-l-2 pl-4" style={{ borderColor: 'var(--accent1)' }}>
             {t('loops.while.tip')}
           </p>
         </AnimatedText>
@@ -233,7 +240,7 @@ function WhileLoopExample() {
     <SlideLayout>
       <div className="flex flex-col h-full justify-center gap-6">
         <AnimatedText>
-          <h2 className="text-3xl font-bold text-text-primary">{t('loops.while.example_title')}</h2>
+          <h2 className="text-3xl font-bold text-text-primary font-display">{t('loops.while.example_title')}</h2>
         </AnimatedText>
         <AnimatedText delay={0.2}>
           <CodeBlock code={whileLoopCode} language="csharp" filename="WhileLoop.cs" />
@@ -251,18 +258,18 @@ function ForeachConcept() {
     <SlideLayout>
       <div className="flex flex-col h-full justify-center gap-8">
         <AnimatedText>
-          <h2 className="text-3xl font-bold text-text-primary">{t('loops.foreach.title')}</h2>
+          <h2 className="text-3xl font-bold text-text-primary font-display">{t('loops.foreach.title')}</h2>
         </AnimatedText>
 
         <AnimatedText delay={0.2}>
-          <div className="bg-bg-card border border-border rounded-lg p-5">
+          <GlassCard className="p-5">
             <p className="text-text-secondary text-xs mb-3 uppercase tracking-widest">
               {t('loops.foreach.syntax_label')}
             </p>
-            <pre className="text-green font-mono text-lg">
+            <pre className="text-[var(--accent1)] font-mono text-lg">
               {'foreach (var item in collection) { }'}
             </pre>
-          </div>
+          </GlassCard>
         </AnimatedText>
 
         <AnimatedList
@@ -272,7 +279,7 @@ function ForeachConcept() {
             <span key="c" className="text-text-primary text-base">{t('loops.foreach.point3')}</span>,
             <span key="d" className="text-text-primary text-base">{t('loops.foreach.point4')}</span>,
           ]}
-          itemClassName="flex items-start gap-3 before:content-['▸'] before:text-green before:mt-0.5 before:shrink-0"
+          itemClassName="flex items-start gap-3 before:content-['▸'] before:text-[var(--accent1)] before:mt-0.5 before:shrink-0"
         />
       </div>
     </SlideLayout>
@@ -303,21 +310,21 @@ function BreakContinueConcept() {
     <SlideLayout>
       <div className="flex flex-col h-full justify-center gap-6">
         <AnimatedText>
-          <h2 className="text-3xl font-bold text-text-primary">{t('loops.break.title')}</h2>
+          <h2 className="text-3xl font-bold text-text-primary font-display">{t('loops.break.title')}</h2>
         </AnimatedText>
 
         <div className="grid grid-cols-2 gap-4">
           <AnimatedText delay={0.2}>
-            <div className="bg-bg-card border border-green/30 rounded-lg p-4">
-              <div className="text-green font-bold mb-2">break</div>
+            <GlassCard accentBorder className="p-4">
+              <div className="text-[var(--accent1)] font-bold mb-2">break</div>
               <p className="text-text-secondary text-sm">{t('loops.break.break_desc')}</p>
-            </div>
+            </GlassCard>
           </AnimatedText>
           <AnimatedText delay={0.3}>
-            <div className="bg-bg-card border border-border rounded-lg p-4">
-              <div className="text-green font-bold mb-2">continue</div>
+            <GlassCard className="p-4">
+              <div className="text-[var(--accent1)] font-bold mb-2">continue</div>
               <p className="text-text-secondary text-sm">{t('loops.break.continue_desc')}</p>
-            </div>
+            </GlassCard>
           </AnimatedText>
         </div>
 
@@ -334,14 +341,16 @@ function BreakContinueConcept() {
 function LoopsTakeaway() {
   const { t } = useLanguage()
   return (
-    <SlideLayout>
+    <SlideLayout showBackground>
       <div className="flex flex-col h-full justify-center gap-8">
         <AnimatedText>
-          <h2 className="text-3xl font-bold text-green">{t('loops.takeaway.title')}</h2>
+          <GradientText as="h2" className="text-3xl font-bold">
+            {t('loops.takeaway.title')}
+          </GradientText>
         </AnimatedText>
 
         <motion.div
-          variants={staggerContainer}
+          variants={playfulStagger}
           initial="hidden"
           animate="visible"
           className="grid grid-cols-2 gap-4"
@@ -354,17 +363,18 @@ function LoopsTakeaway() {
           ].map(({ loop, when }) => (
             <motion.div
               key={loop}
-              variants={fadeInUp}
-              className="bg-bg-card border border-border rounded-lg p-4 flex gap-4 items-start"
+              variants={bounceIn}
             >
-              <span className="text-green font-bold font-mono text-base shrink-0 w-20">{loop}</span>
-              <span className="text-text-secondary text-sm">{when}</span>
+              <GlassCard hoverGlow className="p-4 flex gap-4 items-start">
+                <span className="text-[var(--accent1)] font-bold font-display text-base shrink-0 w-20">{loop}</span>
+                <span className="text-text-secondary text-sm">{when}</span>
+              </GlassCard>
             </motion.div>
           ))}
         </motion.div>
 
         <AnimatedText delay={0.6}>
-          <p className="text-xl text-text-primary border-l-4 border-green pl-4">
+          <p className="text-xl text-text-primary border-l-4 pl-4" style={{ borderColor: 'var(--accent1)' }}>
             {t('loops.takeaway.summary')}
           </p>
         </AnimatedText>

@@ -1,21 +1,25 @@
 import { SlideLayout } from '../components/slide-layout'
 import { AnimatedText, AnimatedList } from '../components/animated-text'
 import { CodeBlock } from '../components/code-block'
+import { GlassCard } from '../components/glass-card'
+import { GradientText } from '../components/gradient-text'
 import { useLanguage } from '../i18n/language-context'
 import { motion } from 'framer-motion'
-import { scaleIn } from '../lib/animations'
+import { bounceIn } from '../lib/animations'
 
 // Slide 1: Section title
 function Ch7SectionTitle() {
   const { t } = useLanguage()
   return (
-    <SlideLayout>
+    <SlideLayout showBackground>
       <div className="flex flex-col items-center justify-center h-full gap-6">
         <AnimatedText>
-          <div className="text-green font-mono text-lg mb-2 opacity-60">// Chapter 7</div>
+          <div className="text-[var(--accent1)] font-display text-lg mb-2 opacity-60">// Chapter 7</div>
         </AnimatedText>
         <AnimatedText delay={0.1}>
-          <h1 className="text-6xl font-bold text-green">{t('methods.title')}</h1>
+          <GradientText as="h1" className="text-6xl font-display font-extrabold">
+            {t('methods.title')}
+          </GradientText>
         </AnimatedText>
         <AnimatedText delay={0.3}>
           <p className="text-text-secondary text-xl mt-2">{t('methods.subtitle')}</p>
@@ -32,21 +36,23 @@ function Ch7Problem() {
     <SlideLayout>
       <div className="flex flex-col h-full justify-center gap-8">
         <AnimatedText>
-          <h2 className="text-4xl font-bold text-green">{t('methods.problem.title')}</h2>
+          <GradientText as="h2" className="text-4xl font-bold">
+            {t('methods.problem.title')}
+          </GradientText>
         </AnimatedText>
         <AnimatedText delay={0.2}>
-          <div className="bg-bg-card border border-border rounded-lg p-6">
+          <GlassCard className="p-6">
             <p className="text-text-secondary text-sm mb-3 font-mono">// Main.cs</p>
             <p className="text-text-primary text-xl font-mono leading-relaxed">
               {t('methods.problem.code_comment')}
             </p>
-          </div>
+          </GlassCard>
         </AnimatedText>
         <AnimatedList
           items={[
-            <span key="1"><span className="text-green">→</span> <span className="text-text-primary">{t('methods.problem.issue1')}</span></span>,
-            <span key="2"><span className="text-green">→</span> <span className="text-text-primary">{t('methods.problem.issue2')}</span></span>,
-            <span key="3"><span className="text-green">→</span> <span className="text-text-primary">{t('methods.problem.issue3')}</span></span>,
+            <span key="1">⚡ <span className="text-text-primary">{t('methods.problem.issue1')}</span></span>,
+            <span key="2">🔥 <span className="text-text-primary">{t('methods.problem.issue2')}</span></span>,
+            <span key="3">💡 <span className="text-text-primary">{t('methods.problem.issue3')}</span></span>,
           ]}
         />
       </div>
@@ -61,36 +67,38 @@ function Ch7WhatIsMethod() {
     <SlideLayout>
       <div className="flex flex-col h-full justify-center gap-8">
         <AnimatedText>
-          <h2 className="text-4xl font-bold text-green">{t('methods.concept.title')}</h2>
+          <GradientText as="h2" className="text-4xl font-bold">
+            {t('methods.concept.title')}
+          </GradientText>
         </AnimatedText>
         <AnimatedText delay={0.15}>
           <p className="text-text-secondary text-lg">{t('methods.concept.description')}</p>
         </AnimatedText>
         <AnimatedText delay={0.25}>
-          <div className="bg-bg-card border border-green/30 rounded-lg p-5 font-mono text-sm">
+          <GlassCard accentBorder className="p-5 font-mono text-sm">
             <div className="flex flex-wrap gap-3 items-center text-lg">
-              <span className="text-green font-bold">{t('methods.concept.return_type')}</span>
+              <span className="text-[var(--accent1)] font-bold">{t('methods.concept.return_type')}</span>
               <span className="text-text-secondary">MethodName</span>
               <span className="text-text-primary">(</span>
-              <span className="text-green/70">{t('methods.concept.params')}</span>
+              <span className="text-[var(--accent1)]/70">{t('methods.concept.params')}</span>
               <span className="text-text-primary">)</span>
               <span className="text-text-primary">{'{ ... }'}</span>
             </div>
-          </div>
+          </GlassCard>
         </AnimatedText>
         <AnimatedList
           items={[
             <span key="1" className="text-text-primary">
-              <span className="text-green font-semibold">{t('methods.concept.part_return')}:</span> {t('methods.concept.part_return_desc')}
+              <span className="text-[var(--accent1)] font-semibold">{t('methods.concept.part_return')}:</span> {t('methods.concept.part_return_desc')}
             </span>,
             <span key="2" className="text-text-primary">
-              <span className="text-green font-semibold">{t('methods.concept.part_name')}:</span> {t('methods.concept.part_name_desc')}
+              <span className="text-[var(--accent1)] font-semibold">{t('methods.concept.part_name')}:</span> {t('methods.concept.part_name_desc')}
             </span>,
             <span key="3" className="text-text-primary">
-              <span className="text-green font-semibold">{t('methods.concept.part_params')}:</span> {t('methods.concept.part_params_desc')}
+              <span className="text-[var(--accent1)] font-semibold">{t('methods.concept.part_params')}:</span> {t('methods.concept.part_params_desc')}
             </span>,
             <span key="4" className="text-text-primary">
-              <span className="text-green font-semibold">{t('methods.concept.part_body')}:</span> {t('methods.concept.part_body_desc')}
+              <span className="text-[var(--accent1)] font-semibold">{t('methods.concept.part_body')}:</span> {t('methods.concept.part_body_desc')}
             </span>,
           ]}
         />
@@ -116,16 +124,18 @@ function Ch7SimpleMethod() {
     <SlideLayout>
       <div className="flex flex-col h-full justify-center gap-6">
         <AnimatedText>
-          <h2 className="text-4xl font-bold text-green">{t('methods.example1.title')}</h2>
+          <GradientText as="h2" className="text-4xl font-bold">
+            {t('methods.example1.title')}
+          </GradientText>
         </AnimatedText>
         <AnimatedText delay={0.15}>
           <p className="text-text-secondary">{t('methods.example1.description')}</p>
         </AnimatedText>
-        <motion.div variants={scaleIn} initial="hidden" animate="visible" transition={{ delay: 0.3 }}>
+        <motion.div variants={bounceIn} initial="hidden" animate="visible" transition={{ delay: 0.3 }}>
           <CodeBlock code={simpleMethodCode} filename="Program.cs" />
         </motion.div>
         <AnimatedText delay={0.5}>
-          <p className="text-green text-sm font-mono">{t('methods.example1.note')}</p>
+          <p className="text-[var(--accent1)] text-sm font-mono">{t('methods.example1.note')}</p>
         </AnimatedText>
       </div>
     </SlideLayout>
@@ -139,26 +149,28 @@ function Ch7ParamsReturn() {
     <SlideLayout>
       <div className="flex flex-col h-full justify-center gap-8">
         <AnimatedText>
-          <h2 className="text-4xl font-bold text-green">{t('methods.params.title')}</h2>
+          <GradientText as="h2" className="text-4xl font-bold">
+            {t('methods.params.title')}
+          </GradientText>
         </AnimatedText>
         <div className="grid grid-cols-2 gap-6">
           <AnimatedText delay={0.15}>
-            <div className="bg-bg-card border border-border rounded-lg p-5 h-full">
-              <p className="text-green font-bold mb-3">{t('methods.params.input_label')}</p>
+            <GlassCard className="p-5 h-full">
+              <p className="text-[var(--accent1)] font-bold mb-3">{t('methods.params.input_label')}</p>
               <p className="text-text-secondary text-sm leading-relaxed">{t('methods.params.input_desc')}</p>
               <p className="text-text-primary font-mono text-sm mt-3">
-                void Greet(<span className="text-green">string name</span>)
+                void Greet(<span className="text-[var(--accent1)]">string name</span>)
               </p>
-            </div>
+            </GlassCard>
           </AnimatedText>
           <AnimatedText delay={0.25}>
-            <div className="bg-bg-card border border-border rounded-lg p-5 h-full">
-              <p className="text-green font-bold mb-3">{t('methods.params.output_label')}</p>
+            <GlassCard hoverGlow className="p-5 h-full">
+              <p className="text-[var(--accent1)] font-bold mb-3">{t('methods.params.output_label')}</p>
               <p className="text-text-secondary text-sm leading-relaxed">{t('methods.params.output_desc')}</p>
               <p className="text-text-primary font-mono text-sm mt-3">
-                <span className="text-green">int</span> Square(<span className="text-green">int n</span>)
+                <span className="text-[var(--accent1)]">int</span> Square(<span className="text-[var(--accent1)]">int n</span>)
               </p>
-            </div>
+            </GlassCard>
           </AnimatedText>
         </div>
         <AnimatedText delay={0.4}>
@@ -189,12 +201,14 @@ function Ch7AddExample() {
     <SlideLayout>
       <div className="flex flex-col h-full justify-center gap-6">
         <AnimatedText>
-          <h2 className="text-4xl font-bold text-green">{t('methods.example2.title')}</h2>
+          <GradientText as="h2" className="text-4xl font-bold">
+            {t('methods.example2.title')}
+          </GradientText>
         </AnimatedText>
         <AnimatedText delay={0.15}>
           <p className="text-text-secondary">{t('methods.example2.description')}</p>
         </AnimatedText>
-        <motion.div variants={scaleIn} initial="hidden" animate="visible" transition={{ delay: 0.3 }}>
+        <motion.div variants={bounceIn} initial="hidden" animate="visible" transition={{ delay: 0.3 }}>
           <CodeBlock code={addMethodCode} filename="Program.cs" />
         </motion.div>
       </div>
@@ -229,12 +243,14 @@ function Ch7Overloading() {
     <SlideLayout>
       <div className="flex flex-col h-full justify-center gap-5">
         <AnimatedText>
-          <h2 className="text-4xl font-bold text-green">{t('methods.overload.title')}</h2>
+          <GradientText as="h2" className="text-4xl font-bold">
+            {t('methods.overload.title')}
+          </GradientText>
         </AnimatedText>
         <AnimatedText delay={0.15}>
           <p className="text-text-secondary">{t('methods.overload.description')}</p>
         </AnimatedText>
-        <motion.div variants={scaleIn} initial="hidden" animate="visible" transition={{ delay: 0.3 }}>
+        <motion.div variants={bounceIn} initial="hidden" animate="visible" transition={{ delay: 0.3 }}>
           <CodeBlock code={overloadCode} filename="Program.cs" />
         </motion.div>
       </div>
@@ -249,32 +265,34 @@ function Ch7VoidVsReturn() {
     <SlideLayout>
       <div className="flex flex-col h-full justify-center gap-8">
         <AnimatedText>
-          <h2 className="text-4xl font-bold text-green">{t('methods.void.title')}</h2>
+          <GradientText as="h2" className="text-4xl font-bold">
+            {t('methods.void.title')}
+          </GradientText>
         </AnimatedText>
         <div className="grid grid-cols-2 gap-6">
           <AnimatedText delay={0.15}>
-            <div className="bg-bg-card border border-green/20 rounded-lg p-5">
-              <p className="text-green font-bold text-lg mb-3 font-mono">void</p>
+            <GlassCard className="p-5">
+              <p className="text-[var(--accent1)] font-bold text-lg mb-3 font-display">void</p>
               <p className="text-text-secondary text-sm mb-4">{t('methods.void.void_desc')}</p>
-              <pre className="text-text-primary text-xs font-mono leading-relaxed bg-bg-secondary rounded p-3">
+              <pre className="text-text-primary text-xs font-mono leading-relaxed bg-white/5 rounded p-3">
 {`static void PrintLine()
 {
     Console.WriteLine("---");
 }`}
               </pre>
-            </div>
+            </GlassCard>
           </AnimatedText>
           <AnimatedText delay={0.25}>
-            <div className="bg-bg-card border border-green/20 rounded-lg p-5">
-              <p className="text-green font-bold text-lg mb-3 font-mono">{t('methods.void.return_label')}</p>
+            <GlassCard accentBorder className="p-5">
+              <p className="text-[var(--accent1)] font-bold text-lg mb-3 font-display">{t('methods.void.return_label')}</p>
               <p className="text-text-secondary text-sm mb-4">{t('methods.void.return_desc')}</p>
-              <pre className="text-text-primary text-xs font-mono leading-relaxed bg-bg-secondary rounded p-3">
+              <pre className="text-text-primary text-xs font-mono leading-relaxed bg-white/5 rounded p-3">
 {`static int Square(int n)
 {
     return n * n;
 }`}
               </pre>
-            </div>
+            </GlassCard>
           </AnimatedText>
         </div>
         <AnimatedText delay={0.4}>
@@ -289,26 +307,26 @@ function Ch7VoidVsReturn() {
 function Ch7Takeaway() {
   const { t } = useLanguage()
   return (
-    <SlideLayout>
+    <SlideLayout showBackground>
       <div className="flex flex-col items-center justify-center h-full gap-8 text-center">
         <AnimatedText>
-          <div className="text-green font-mono text-sm opacity-60 mb-2">// takeaway</div>
-          <h2 className="text-4xl font-bold text-text-primary">{t('methods.takeaway.title')}</h2>
+          <div className="text-[var(--accent1)] font-display text-sm opacity-60 mb-2">// takeaway</div>
+          <h2 className="text-4xl font-bold text-text-primary font-display">{t('methods.takeaway.title')}</h2>
         </AnimatedText>
         <AnimatedList
           className="text-left max-w-lg"
           itemClassName="flex items-start gap-3"
           items={[
-            <span key="1"><span className="text-green mt-1">✓</span> <span className="text-text-primary">{t('methods.takeaway.point1')}</span></span>,
-            <span key="2"><span className="text-green mt-1">✓</span> <span className="text-text-primary">{t('methods.takeaway.point2')}</span></span>,
-            <span key="3"><span className="text-green mt-1">✓</span> <span className="text-text-primary">{t('methods.takeaway.point3')}</span></span>,
-            <span key="4"><span className="text-green mt-1">✓</span> <span className="text-text-primary">{t('methods.takeaway.point4')}</span></span>,
+            <span key="1"><span className="text-[var(--accent1)] mt-1">✓</span> <span className="text-text-primary">{t('methods.takeaway.point1')}</span></span>,
+            <span key="2"><span className="text-[var(--accent1)] mt-1">✓</span> <span className="text-text-primary">{t('methods.takeaway.point2')}</span></span>,
+            <span key="3"><span className="text-[var(--accent1)] mt-1">✓</span> <span className="text-text-primary">{t('methods.takeaway.point3')}</span></span>,
+            <span key="4"><span className="text-[var(--accent1)] mt-1">✓</span> <span className="text-text-primary">{t('methods.takeaway.point4')}</span></span>,
           ]}
         />
         <AnimatedText delay={0.6}>
-          <div className="bg-bg-card border border-green/30 rounded-lg px-8 py-4 mt-2">
-            <p className="text-green font-mono text-lg">"{t('methods.takeaway.quote')}"</p>
-          </div>
+          <GlassCard accentBorder className="px-8 py-4 mt-2">
+            <p className="text-[var(--accent1)] font-mono text-lg">"{t('methods.takeaway.quote')}"</p>
+          </GlassCard>
         </AnimatedText>
       </div>
     </SlideLayout>
