@@ -56,19 +56,6 @@ function SlideShow() {
     return () => window.removeEventListener('keydown', onKeyDown)
   }, [goNext, goPrev])
 
-  const handleClick = useCallback(
-    (e: React.MouseEvent) => {
-      const target = e.target as HTMLElement
-      if (target.closest('button, a, input, select, textarea, [role="button"]')) return
-
-      const x = e.clientX
-      const half = window.innerWidth / 2
-      if (x > half) goNext()
-      else goPrev()
-    },
-    [goNext, goPrev]
-  )
-
   const currentChapter = useMemo(() => getChapterForSlide(current), [current])
 
   const navContextValue = useMemo(
@@ -92,7 +79,7 @@ function SlideShow() {
   return (
     <SlideNavigationProvider value={navContextValue}>
       <ChapterThemeProvider chapterIndex={chapterIndex}>
-        <div className="relative w-full h-screen" onClick={handleClick}>
+        <div className="relative w-full h-screen">
           {/* Header */}
           <div className="fixed top-4 right-4 z-50">
             <LanguageSwitcher />
@@ -125,7 +112,7 @@ function SlideShow() {
           </AnimatePresence>
 
           {/* Progress */}
-          <ProgressBar current={current} total={total} currentChapter={currentChapter} />
+          <ProgressBar current={current} total={total} currentChapter={currentChapter} onPrev={goPrev} onNext={goNext} />
         </div>
       </ChapterThemeProvider>
     </SlideNavigationProvider>
