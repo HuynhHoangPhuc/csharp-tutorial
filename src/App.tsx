@@ -6,11 +6,14 @@ import { ProgressBar } from './components/progress-bar'
 import { slides, getChapterForSlide } from './slides'
 import { SlideNavigationProvider } from './lib/slide-navigation-context'
 import { ChapterThemeProvider } from './lib/chapter-theme-context'
+import { useSlideScale } from './lib/use-slide-scale'
+import { useTouchSwipe } from './lib/use-touch-swipe'
 
 function SlideShow() {
   const [current, setCurrent] = useState(0)
   const [direction, setDirection] = useState(1)
   const total = slides.length
+  const { isMobile } = useSlideScale()
 
   const goNext = useCallback(() => {
     setCurrent((prev) => {
@@ -56,6 +59,8 @@ function SlideShow() {
     return () => window.removeEventListener('keydown', onKeyDown)
   }, [goNext, goPrev])
 
+  const swipeHandlers = useTouchSwipe(goNext, goPrev)
+
   const currentChapter = useMemo(() => getChapterForSlide(current), [current])
 
   const navContextValue = useMemo(
@@ -79,7 +84,10 @@ function SlideShow() {
   return (
     <SlideNavigationProvider value={navContextValue}>
       <ChapterThemeProvider chapterIndex={chapterIndex}>
-        <div className="relative w-full h-screen">
+        <div
+          className={`relative w-full ${isMobile ? 'min-h-[100dvh]' : 'h-screen'}`}
+          {...swipeHandlers}
+        >
           {/* Header */}
           <div className="fixed top-4 right-4 z-50">
             <LanguageSwitcher />
@@ -105,7 +113,7 @@ function SlideShow() {
               animate={{ opacity: 1, x: 0, scale: 1 }}
               exit={{ opacity: 0, x: direction * -40, scale: 0.97 }}
               transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
-              className="absolute inset-0"
+              className={isMobile ? '' : 'absolute inset-0'}
             >
               <CurrentSlide />
             </motion.div>

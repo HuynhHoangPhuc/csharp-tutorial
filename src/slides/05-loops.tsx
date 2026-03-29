@@ -13,22 +13,22 @@ function LoopsSectionTitle() {
   const { t } = useLanguage()
   return (
     <SlideLayout showBackground>
-      <div className="flex flex-col items-center justify-center h-full gap-7">
+      <div className="flex flex-col items-center justify-center h-full gap-4 md:gap-7">
         <AnimatedText>
-          <div className="text-[var(--accent1)] text-lg font-semibold tracking-widest uppercase">
+          <div className="text-[var(--accent1)] text-base md:text-lg font-semibold tracking-widest uppercase">
             {t('loops.chapter')}
           </div>
         </AnimatedText>
         <AnimatedText delay={0.15}>
-          <GradientText as="h1" className="text-6xl font-display font-extrabold">
+          <GradientText as="h1" className="text-3xl md:text-6xl font-display font-extrabold">
             {t('loops.title')}
           </GradientText>
         </AnimatedText>
         <AnimatedText delay={0.3}>
-          <p className="text-xl text-text-secondary">{t('loops.subtitle')}</p>
+          <p className="text-sm md:text-xl text-text-secondary">{t('loops.subtitle')}</p>
         </AnimatedText>
         <AnimatedText delay={0.5}>
-          <div className="mt-4 text-[var(--accent1)] font-display text-2xl tracking-wider">
+          <div className="mt-4 text-[var(--accent1)] font-display text-lg md:text-2xl tracking-wider">
             {'for  while  do-while  foreach'}
           </div>
         </AnimatedText>
@@ -43,18 +43,18 @@ function LoopsProblem() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col h-full justify-center gap-6">
+      <div className="flex flex-col h-full justify-center gap-4 md:gap-6">
         <AnimatedText>
-          <GradientText as="h2" className="text-3xl font-bold">
+          <GradientText as="h2" className="text-xl md:text-3xl font-bold">
             {t('loops.problem.title')}
           </GradientText>
         </AnimatedText>
         <AnimatedText delay={0.2}>
-          <GlassCard className="p-6">
-            <p className="text-text-secondary text-sm mb-4 uppercase tracking-widest">
+          <GlassCard className="p-4 md:p-6">
+            <p className="text-text-secondary text-sm mb-3 md:mb-4 uppercase tracking-widest">
               {t('loops.problem.without_loops')}
             </p>
-            <pre className="text-red-400 text-sm leading-relaxed font-mono">
+            <pre className="text-red-400 text-xs md:text-sm leading-relaxed font-mono">
 {`Console.WriteLine(1);
 Console.WriteLine(2);
 Console.WriteLine(3);
@@ -63,10 +63,10 @@ Console.WriteLine(3);
           </GlassCard>
         </AnimatedText>
         <AnimatedText delay={0.4}>
-          <p className="text-xl text-text-primary">{t('loops.problem.question')}</p>
+          <p className="text-base md:text-xl text-text-primary">{t('loops.problem.question')}</p>
         </AnimatedText>
         <AnimatedText delay={0.55}>
-          <p className="text-[var(--accent1)] text-lg">{t('loops.problem.answer')}</p>
+          <p className="text-[var(--accent1)] text-sm md:text-lg">{t('loops.problem.answer')}</p>
         </AnimatedText>
       </div>
     </SlideLayout>
@@ -79,19 +79,19 @@ function ForLoopConcept() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col h-full justify-center gap-6">
+      <div className="flex flex-col h-full justify-center gap-4 md:gap-6">
         <AnimatedText>
-          <h2 className="text-3xl font-bold text-text-primary font-display">
+          <h2 className="text-xl md:text-3xl font-bold text-text-primary font-display">
             {t('loops.for.title')}
           </h2>
         </AnimatedText>
 
         <AnimatedText delay={0.2}>
-          <GlassCard className="p-5">
-            <p className="text-text-secondary text-xs mb-3 uppercase tracking-widest">
+          <GlassCard className="p-3 md:p-5">
+            <p className="text-text-secondary text-xs mb-2 md:mb-3 uppercase tracking-widest">
               {t('loops.for.syntax_label')}
             </p>
-            <pre className="text-[var(--accent1)] font-mono text-lg">
+            <pre className="text-[var(--accent1)] font-mono text-sm md:text-lg">
               {'for (initializer; condition; increment) { }'}
             </pre>
           </GlassCard>
@@ -101,7 +101,7 @@ function ForLoopConcept() {
           variants={playfulStagger}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-3 gap-4"
+          className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4"
         >
           {[
             { label: t('loops.for.init_label'), desc: t('loops.for.init_desc'), example: 'int i = 0' },
@@ -112,10 +112,10 @@ function ForLoopConcept() {
               key={label}
               variants={springIn}
             >
-              <GlassCard hoverGlow className="p-4">
-                <div className="text-[var(--accent1)] font-bold mb-1">{label}</div>
-                <div className="text-text-secondary text-sm mb-2">{desc}</div>
-                <code className="text-text-primary text-sm">{example}</code>
+              <GlassCard hoverGlow className="p-3 md:p-4">
+                <div className="text-[var(--accent1)] font-bold mb-1 text-sm md:text-base">{label}</div>
+                <div className="text-text-secondary text-xs md:text-sm mb-2">{desc}</div>
+                <code className="text-text-primary text-xs md:text-sm">{example}</code>
               </GlassCard>
             </motion.div>
           ))}
@@ -146,15 +146,15 @@ function ForLoopExample() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col h-full justify-center gap-6">
+      <div className="flex flex-col h-full justify-center gap-4 md:gap-6">
         <AnimatedText>
-          <h2 className="text-3xl font-bold text-text-primary font-display">{t('loops.for.example_title')}</h2>
+          <h2 className="text-xl md:text-3xl font-bold text-text-primary font-display">{t('loops.for.example_title')}</h2>
         </AnimatedText>
         <AnimatedText delay={0.2}>
           <CodeBlock code={forLoopCode} language="csharp" filename="ForLoop.cs" />
         </AnimatedText>
         <AnimatedText delay={0.4}>
-          <p className="text-text-secondary text-sm">{t('loops.for.example_note')}</p>
+          <p className="text-text-secondary text-xs md:text-sm">{t('loops.for.example_note')}</p>
         </AnimatedText>
       </div>
     </SlideLayout>
@@ -167,37 +167,37 @@ function WhileLoopConcept() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col h-full justify-center gap-6">
+      <div className="flex flex-col h-full justify-center gap-4 md:gap-6">
         <AnimatedText>
-          <h2 className="text-3xl font-bold text-text-primary font-display">{t('loops.while.title')}</h2>
+          <h2 className="text-xl md:text-3xl font-bold text-text-primary font-display">{t('loops.while.title')}</h2>
         </AnimatedText>
 
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
           <AnimatedText delay={0.2}>
-            <GlassCard className="p-5 h-full">
-              <div className="text-[var(--accent1)] font-bold text-lg mb-2">while</div>
-              <pre className="text-text-secondary text-sm font-mono mb-3">
+            <GlassCard className="p-3 md:p-5 h-full">
+              <div className="text-[var(--accent1)] font-bold text-base md:text-lg mb-2">while</div>
+              <pre className="text-text-secondary text-xs md:text-sm font-mono mb-3">
                 {'while (condition) { }'}
               </pre>
               <AnimatedList
                 items={[
-                  <span key="a" className="text-text-secondary text-sm">{t('loops.while.while_point1')}</span>,
-                  <span key="b" className="text-text-secondary text-sm">{t('loops.while.while_point2')}</span>,
+                  <span key="a" className="text-text-secondary text-xs md:text-sm">{t('loops.while.while_point1')}</span>,
+                  <span key="b" className="text-text-secondary text-xs md:text-sm">{t('loops.while.while_point2')}</span>,
                 ]}
               />
             </GlassCard>
           </AnimatedText>
 
           <AnimatedText delay={0.35}>
-            <GlassCard accentBorder className="p-5 h-full">
-              <div className="text-[var(--accent1)] font-bold text-lg mb-2">do-while</div>
-              <pre className="text-text-secondary text-sm font-mono mb-3">
+            <GlassCard accentBorder className="p-3 md:p-5 h-full">
+              <div className="text-[var(--accent1)] font-bold text-base md:text-lg mb-2">do-while</div>
+              <pre className="text-text-secondary text-xs md:text-sm font-mono mb-3">
                 {'do { } while (condition);'}
               </pre>
               <AnimatedList
                 items={[
-                  <span key="a" className="text-text-secondary text-sm">{t('loops.while.dowhile_point1')}</span>,
-                  <span key="b" className="text-text-secondary text-sm">{t('loops.while.dowhile_point2')}</span>,
+                  <span key="a" className="text-text-secondary text-xs md:text-sm">{t('loops.while.dowhile_point1')}</span>,
+                  <span key="b" className="text-text-secondary text-xs md:text-sm">{t('loops.while.dowhile_point2')}</span>,
                 ]}
               />
             </GlassCard>
@@ -205,7 +205,7 @@ function WhileLoopConcept() {
         </div>
 
         <AnimatedText delay={0.5}>
-          <p className="text-text-secondary text-sm border-l-2 pl-4" style={{ borderColor: 'var(--accent1)' }}>
+          <p className="text-text-secondary text-xs md:text-sm border-l-2 pl-4" style={{ borderColor: 'var(--accent1)' }}>
             {t('loops.while.tip')}
           </p>
         </AnimatedText>
@@ -238,9 +238,9 @@ function WhileLoopExample() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col h-full justify-center gap-6">
+      <div className="flex flex-col h-full justify-center gap-4 md:gap-6">
         <AnimatedText>
-          <h2 className="text-3xl font-bold text-text-primary font-display">{t('loops.while.example_title')}</h2>
+          <h2 className="text-xl md:text-3xl font-bold text-text-primary font-display">{t('loops.while.example_title')}</h2>
         </AnimatedText>
         <AnimatedText delay={0.2}>
           <CodeBlock code={whileLoopCode} language="csharp" filename="WhileLoop.cs" />
@@ -256,17 +256,17 @@ function ForeachConcept() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col h-full justify-center gap-6">
+      <div className="flex flex-col h-full justify-center gap-4 md:gap-6">
         <AnimatedText>
-          <h2 className="text-3xl font-bold text-text-primary font-display">{t('loops.foreach.title')}</h2>
+          <h2 className="text-xl md:text-3xl font-bold text-text-primary font-display">{t('loops.foreach.title')}</h2>
         </AnimatedText>
 
         <AnimatedText delay={0.2}>
-          <GlassCard className="p-5">
-            <p className="text-text-secondary text-xs mb-3 uppercase tracking-widest">
+          <GlassCard className="p-3 md:p-5">
+            <p className="text-text-secondary text-xs mb-2 md:mb-3 uppercase tracking-widest">
               {t('loops.foreach.syntax_label')}
             </p>
-            <pre className="text-[var(--accent1)] font-mono text-lg">
+            <pre className="text-[var(--accent1)] font-mono text-sm md:text-lg">
               {'foreach (var item in collection) { }'}
             </pre>
           </GlassCard>
@@ -274,10 +274,10 @@ function ForeachConcept() {
 
         <AnimatedList
           items={[
-            <span key="a" className="text-text-primary text-base">{t('loops.foreach.point1')}</span>,
-            <span key="b" className="text-text-primary text-base">{t('loops.foreach.point2')}</span>,
-            <span key="c" className="text-text-primary text-base">{t('loops.foreach.point3')}</span>,
-            <span key="d" className="text-text-primary text-base">{t('loops.foreach.point4')}</span>,
+            <span key="a" className="text-text-primary text-sm md:text-base">{t('loops.foreach.point1')}</span>,
+            <span key="b" className="text-text-primary text-sm md:text-base">{t('loops.foreach.point2')}</span>,
+            <span key="c" className="text-text-primary text-sm md:text-base">{t('loops.foreach.point3')}</span>,
+            <span key="d" className="text-text-primary text-sm md:text-base">{t('loops.foreach.point4')}</span>,
           ]}
           itemClassName="flex items-start gap-3 before:content-['▸'] before:text-[var(--accent1)] before:mt-0.5 before:shrink-0"
         />
@@ -308,22 +308,22 @@ function BreakContinueConcept() {
   const { t } = useLanguage()
   return (
     <SlideLayout>
-      <div className="flex flex-col h-full justify-center gap-6">
+      <div className="flex flex-col h-full justify-center gap-4 md:gap-6">
         <AnimatedText>
-          <h2 className="text-3xl font-bold text-text-primary font-display">{t('loops.break.title')}</h2>
+          <h2 className="text-xl md:text-3xl font-bold text-text-primary font-display">{t('loops.break.title')}</h2>
         </AnimatedText>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4">
           <AnimatedText delay={0.2}>
-            <GlassCard accentBorder className="p-4">
+            <GlassCard accentBorder className="p-3 md:p-4">
               <div className="text-[var(--accent1)] font-bold mb-2">break</div>
-              <p className="text-text-secondary text-sm">{t('loops.break.break_desc')}</p>
+              <p className="text-text-secondary text-xs md:text-sm">{t('loops.break.break_desc')}</p>
             </GlassCard>
           </AnimatedText>
           <AnimatedText delay={0.3}>
-            <GlassCard className="p-4">
+            <GlassCard className="p-3 md:p-4">
               <div className="text-[var(--accent1)] font-bold mb-2">continue</div>
-              <p className="text-text-secondary text-sm">{t('loops.break.continue_desc')}</p>
+              <p className="text-text-secondary text-xs md:text-sm">{t('loops.break.continue_desc')}</p>
             </GlassCard>
           </AnimatedText>
         </div>
@@ -342,9 +342,9 @@ function LoopsTakeaway() {
   const { t } = useLanguage()
   return (
     <SlideLayout showBackground>
-      <div className="flex flex-col h-full justify-center gap-6">
+      <div className="flex flex-col h-full justify-center gap-4 md:gap-6">
         <AnimatedText>
-          <GradientText as="h2" className="text-3xl font-bold">
+          <GradientText as="h2" className="text-xl md:text-3xl font-bold">
             {t('loops.takeaway.title')}
           </GradientText>
         </AnimatedText>
@@ -353,7 +353,7 @@ function LoopsTakeaway() {
           variants={playfulStagger}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-2 gap-4"
+          className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4"
         >
           {[
             { loop: 'for',      when: t('loops.takeaway.for_when') },
@@ -365,16 +365,16 @@ function LoopsTakeaway() {
               key={loop}
               variants={bounceIn}
             >
-              <GlassCard hoverGlow className="p-4 flex gap-4 items-start">
-                <span className="text-[var(--accent1)] font-bold font-display text-base shrink-0 w-20">{loop}</span>
-                <span className="text-text-secondary text-sm">{when}</span>
+              <GlassCard hoverGlow className="p-3 md:p-4 flex gap-3 md:gap-4 items-start">
+                <span className="text-[var(--accent1)] font-bold font-display text-sm md:text-base shrink-0 w-20">{loop}</span>
+                <span className="text-text-secondary text-xs md:text-sm">{when}</span>
               </GlassCard>
             </motion.div>
           ))}
         </motion.div>
 
         <AnimatedText delay={0.6}>
-          <p className="text-xl text-text-primary border-l-4 pl-4" style={{ borderColor: 'var(--accent1)' }}>
+          <p className="text-base md:text-xl text-text-primary border-l-4 pl-4" style={{ borderColor: 'var(--accent1)' }}>
             {t('loops.takeaway.summary')}
           </p>
         </AnimatedText>

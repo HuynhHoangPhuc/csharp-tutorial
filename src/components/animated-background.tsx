@@ -1,11 +1,16 @@
 import { useChapterTheme } from '../lib/chapter-theme-context'
+import { useSlideScale } from '../lib/use-slide-scale'
 
 interface AnimatedBackgroundProps {
   variant?: 'blobs' | 'subtle'
 }
 
 export function AnimatedBackground({ variant = 'blobs' }: AnimatedBackgroundProps) {
+  const { isMobile } = useSlideScale()
   const { accent1, accent2 } = useChapterTheme()
+
+  if (isMobile) return null
+
   const opacity = variant === 'blobs' ? 0.3 : 0.15
   const blur = variant === 'blobs' ? '100px' : '80px'
 

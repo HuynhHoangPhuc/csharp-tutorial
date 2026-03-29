@@ -30,13 +30,14 @@ export function ProgressBar({ current, total, currentChapter, onPrev, onNext }: 
       </div>
 
       {/* Navigation row */}
-      <div className="flex items-center justify-between px-4 py-2">
+      <div className="flex items-center justify-between px-3 md:px-4 py-2">
         <button
           onClick={onPrev}
           disabled={isFirst}
-          className="font-display text-xs font-semibold px-3 py-1 rounded glass
+          className="font-display text-xs font-semibold px-4 py-2 md:px-3 md:py-1 rounded glass
             text-text-secondary hover:text-[var(--accent1)] transition-colors
-            disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+            disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer
+            min-h-[44px] min-w-[44px] md:min-h-0 md:min-w-0"
         >
           ◀ Prev
         </button>
@@ -44,7 +45,7 @@ export function ProgressBar({ current, total, currentChapter, onPrev, onNext }: 
         <div className="text-text-secondary text-xs flex items-center gap-3">
           {currentChapter && (
             <span
-              className="font-display font-semibold px-2.5 py-0.5 rounded-full glass text-xs"
+              className="hidden md:inline-flex font-display font-semibold px-2.5 py-0.5 rounded-full glass text-xs"
               style={{ color: 'var(--accent1)' }}
             >
               {chapterEmojis[currentChapter.chapterIndex] ?? '📖'}{' '}
@@ -57,9 +58,10 @@ export function ProgressBar({ current, total, currentChapter, onPrev, onNext }: 
         <button
           onClick={onNext}
           disabled={isLast}
-          className="font-display text-xs font-semibold px-3 py-1 rounded glass
+          className="font-display text-xs font-semibold px-4 py-2 md:px-3 md:py-1 rounded glass
             text-text-secondary hover:text-[var(--accent1)] transition-colors
-            disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+            disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer
+            min-h-[44px] min-w-[44px] md:min-h-0 md:min-w-0"
         >
           Next ▶
         </button>

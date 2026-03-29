@@ -9,7 +9,18 @@ interface SlideLayoutProps {
 }
 
 export function SlideLayout({ children, className = '', showBackground = false }: SlideLayoutProps) {
-  const { containerStyle } = useSlideScale()
+  const { containerStyle, isMobile } = useSlideScale()
+
+  if (isMobile) {
+    return (
+      <div className={`w-full min-h-[100dvh] px-4 pt-6 pb-16 bg-bg-primary overflow-y-auto font-body ${className}`}>
+        {showBackground && <AnimatedBackground />}
+        <div className="relative z-10 flex flex-col justify-center min-h-[calc(100dvh-5.5rem)]">
+          {children}
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="flex items-center justify-center w-full h-full absolute inset-0">

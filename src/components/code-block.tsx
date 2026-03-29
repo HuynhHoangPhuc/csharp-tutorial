@@ -35,7 +35,7 @@ export function CodeBlock({ code, language = 'csharp', filename }: CodeBlockProp
       />
 
       {filename && (
-        <div className="px-4 py-2 text-xs text-text-secondary border-b border-white/8 flex items-center gap-3">
+        <div className="px-3 md:px-4 py-1.5 md:py-2 text-xs text-text-secondary border-b border-white/8 flex items-center gap-3">
           {/* Traffic light dots */}
           <span className="flex items-center gap-1.5" aria-hidden="true">
             <span className="w-[7px] h-[7px] rounded-full bg-[#ff5f57]" />
@@ -49,17 +49,17 @@ export function CodeBlock({ code, language = 'csharp', filename }: CodeBlockProp
       <div className="relative">
         <button
           onClick={handleCopy}
-          className="absolute top-3 right-3 p-1.5 rounded bg-white/5 hover:bg-[var(--accent1)]/20 text-text-secondary hover:text-[var(--accent1)] transition-colors z-10 cursor-pointer"
+          className="absolute top-2 right-2 p-2 md:top-3 md:right-3 md:p-1.5 rounded bg-white/5 hover:bg-[var(--accent1)]/20 text-text-secondary hover:text-[var(--accent1)] transition-colors z-10 cursor-pointer min-w-[44px] min-h-[44px] md:min-w-0 md:min-h-0 flex items-center justify-center"
           title="Copy code"
         >
           {copied ? <Check size={14} /> : <Copy size={14} />}
         </button>
         <Highlight theme={themes.nightOwl} code={code.trim()} language={language}>
           {({ tokens, getLineProps, getTokenProps }) => (
-            <pre className="overflow-x-auto p-5 text-[13px] leading-normal font-mono">
+            <pre className="overflow-x-auto p-3 md:p-5 text-[12px] md:text-[13px] leading-normal font-mono">
               {tokens.map((line, i) => (
                 <div key={i} {...getLineProps({ line })} className="flex">
-                  <span className="select-none text-text-secondary/40 w-8 text-right mr-4 shrink-0">
+                  <span className="select-none text-text-secondary/40 w-6 md:w-8 text-right mr-3 md:mr-4 shrink-0">
                     {i + 1}
                   </span>
                   <span>

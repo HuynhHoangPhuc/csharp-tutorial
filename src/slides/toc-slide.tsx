@@ -16,9 +16,9 @@ export function TocSlide() {
 
   return (
     <SlideLayout>
-      <div className="flex flex-col justify-center h-full gap-7">
+      <div className="flex flex-col justify-center h-full gap-4 md:gap-7">
         <AnimatedText>
-          <GradientText as="h2" className="text-4xl font-display font-bold">
+          <GradientText as="h2" className="text-xl md:text-4xl font-display font-bold">
             {t('toc.title')}
           </GradientText>
         </AnimatedText>
@@ -27,7 +27,7 @@ export function TocSlide() {
           variants={playfulStagger}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-4 gap-4"
+          className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4"
         >
           {chapters.map((ch, i) => {
             const chapterEnd = startIndices[i] + ch.slides.length
@@ -58,21 +58,21 @@ export function TocSlide() {
                   <GlassCard
                     hoverGlow
                     accentBorder={isActive}
-                    className={`p-4 ${isPast ? 'opacity-55' : ''}`}
+                    className={`p-3 md:p-4 ${isPast ? 'opacity-55' : ''}`}
                   >
                     {/* Emoji */}
-                    <div className="text-2xl mb-2">{emoji}</div>
+                    <div className="text-xl md:text-2xl mb-1 md:mb-2">{emoji}</div>
 
                     {/* Chapter number */}
                     <span
-                      className="text-2xl font-display font-bold block mb-1"
+                      className="text-xl md:text-2xl font-display font-bold block mb-1"
                       style={{ color: isActive ? colors.accent1 : undefined }}
                     >
                       {String(ch.id).padStart(2, '0')}
                     </span>
 
                     {/* Chapter title */}
-                    <span className="font-display text-sm font-medium text-text-secondary leading-snug block">
+                    <span className="font-display text-xs md:text-sm font-medium text-text-secondary leading-snug block">
                       {t(ch.titleKey)}
                     </span>
 
@@ -96,7 +96,7 @@ export function TocSlide() {
         </motion.div>
 
         <AnimatedText delay={0.5}>
-          <p className="text-text-secondary/60 text-sm font-body text-center">
+          <p className="text-text-secondary/60 text-xs md:text-sm font-body text-center">
             {t('toc.hint')}
           </p>
         </AnimatedText>

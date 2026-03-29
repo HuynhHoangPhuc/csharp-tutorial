@@ -29,6 +29,13 @@
     font-family: var(--font-body);
     color: var(--color-text-primary);
   }
+
+  @media (max-width: 767px) {
+    html, body, #root {
+      overflow: auto;
+      overflow-x: hidden;
+    }
+  }
 }
 
 @layer base {

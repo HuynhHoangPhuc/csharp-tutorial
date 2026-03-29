@@ -17,7 +17,7 @@ export function GlassCard({ children, className = '', accentBorder = false, hove
       } : undefined}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       className={`
-        relative rounded-2xl overflow-hidden
+        relative rounded-xl md:rounded-2xl overflow-hidden
         bg-white/5 backdrop-blur-xl
         border border-white/10
         ${className}
